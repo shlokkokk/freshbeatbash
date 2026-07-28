@@ -11,6 +11,7 @@ import { Schedule }    from './components/Schedule'
 import { Stage }       from './components/Stage'
 import { Gallery }     from './components/Gallery'
 import { Crew }        from './components/Crew'
+import { Sponsors }    from './components/Sponsors'
 import { Social }      from './components/Social'
 import { Footer }      from './components/Footer'
 import { MobileDock }  from './components/MobileDock'
@@ -43,6 +44,7 @@ export default function App() {
         <Stage />
         <Gallery />
         <Crew />
+        <Sponsors />
         <Social />
       </main>
 

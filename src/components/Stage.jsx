@@ -42,6 +42,7 @@ export function Stage() {
             className="btn btn-primary btn-xl"
             id="stage-btn"
           >
+            <span className="btn-pulse-dot" />
             <Mic size={18} /> Register Your Performance
           </MagneticButton>
           <p className="stage-note">* Open to all college students. Spots are limited — don't wait.</p>

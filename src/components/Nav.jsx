@@ -9,6 +9,7 @@ const links = [
   { href: '#schedule',   num: '03', label: 'Schedule' },
   { href: '#gallery',    num: '04', label: 'Gallery' },
   { href: '#crew',       num: '05', label: 'Team' },
+  { href: '#sponsors',   num: '06', label: 'Sponsors' },
 ]
 
 const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
@@ -85,6 +86,7 @@ export function Nav() {
             ))}
             <li>
               <a href={REG_URL} target="_blank" rel="noopener noreferrer" className="nav-link nav-cta">
+                <span className="btn-pulse-dot" />
                 Register Act <ArrowRight size={13} />
               </a>
             </li>
@@ -143,6 +145,7 @@ export function Nav() {
                   className="mobile-menu-cta-btn"
                   onClick={close}
                 >
+                  <span className="btn-pulse-dot" />
                   <Mic2 size={18} /> Register Your Performance
                 </a>
               </motion.li>
