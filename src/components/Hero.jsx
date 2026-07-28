@@ -343,7 +343,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: .6, delay: 1.0, ease: [0.16,1,0.3,1] }}
         >
-          <MagneticButton href={REG_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-cyber-pulse" id="hero-reg-btn">
+          <MagneticButton href={REG_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" id="hero-reg-btn">
             <span className="btn-pulse-dot" />
             <Mic2 size={17} /> Register Your Act
           </MagneticButton>
