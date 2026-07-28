@@ -267,6 +267,57 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   transform: translateY(-2px);
 }
 
+/* ─── Cyber Audio-Reactor Button (Live Equalizer inside Pill) ─── */
+.btn-audio-reactor {
+  background: rgba(10, 10, 22, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--lime);
+  border: 1px solid rgba(200, 255, 0, 0.45);
+  box-shadow: 0 0 24px rgba(200, 255, 0, 0.2), inset 0 0 16px rgba(200, 255, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  isolation: isolate;
+}
+
+.btn-audio-reactor:hover {
+  background: rgba(15, 15, 30, 0.95);
+  border-color: var(--lime);
+  color: #ffffff;
+  box-shadow: 0 0 35px rgba(200, 255, 0, 0.5), 0 0 60px rgba(0, 240, 255, 0.25);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Mini Audio EQ Equalizer Bars inside Button */
+.btn-eq-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.eq-bar {
+  width: 2.5px;
+  border-radius: 2px;
+  background: var(--lime);
+  transform-origin: bottom;
+}
+
+.eq-1 { height: 60%; animation: eq-jump-1 0.75s ease-in-out infinite alternate; }
+.eq-2 { height: 100%; animation: eq-jump-2 0.6s ease-in-out infinite alternate; }
+.eq-3 { height: 45%; animation: eq-jump-3 0.85s ease-in-out infinite alternate; }
+.eq-4 { height: 80%; animation: eq-jump-4 0.65s ease-in-out infinite alternate; }
+
+@keyframes eq-jump-1 { 0% { height: 25%; } 100% { height: 95%; } }
+@keyframes eq-jump-2 { 0% { height: 90%; } 100% { height: 35%; } }
+@keyframes eq-jump-3 { 0% { height: 40%; } 100% { height: 100%; } }
+@keyframes eq-jump-4 { 0% { height: 85%; } 100% { height: 20%; } }
+
+.btn-audio-reactor:hover .eq-bar {
+  background: var(--cyan);
+  animation-duration: 0.35s;
+}
+
 /* Unique Pulsing Live Registration Dot inside CTAs */
 .btn-pulse-dot {
   width: 8px; height: 8px;
