@@ -36,12 +36,13 @@
 
 /* ─── Reset ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden !important; width: 100%; }
 body {
   background: var(--bg);
   color: var(--text-1);
   font-family: var(--font-b);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
 }
 img  { display: block; max-width: 100%; }
@@ -1216,12 +1217,13 @@ body.mobile-menu-open .mobile-cyber-dock {
   .mobile-cyber-dock {
     display: block;
     position: fixed;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 14px;
+    left: 12px;
+    right: 12px;
+    margin: 0 auto;
+    width: calc(100% - 24px);
+    max-width: 340px;
     z-index: 9999;
-    width: calc(100% - 32px);
-    max-width: 380px;
     pointer-events: none;
   }
 
