@@ -415,36 +415,63 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(24px, 5vw, 40px);
-  overflow-y: auto;
+  padding: calc(clamp(16px, 4vw, 24px) + env(safe-area-inset-top, 0px)) clamp(16px, 4vw, 24px) clamp(16px, 4vw, 24px);
+  height: 100dvh;
+  max-height: 100vh;
+  overflow: hidden; /* Single screen fit — NO scrollbar */
   isolation: isolate;
 }
 
 .mobile-menu-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   font-family: var(--font-d);
-  font-size: 16px;
+  font-size: 15px;
   letter-spacing: .08em;
   color: var(--text-1);
-  padding-bottom: 20px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-close-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(200, 255, 0, 0.12);
+  border: 1px solid rgba(200, 255, 0, 0.4);
+  border-radius: 100px;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.mobile-close-btn:active {
+  transform: scale(0.94);
 }
 
 .mobile-menu-links {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
   margin: auto 0;
-  padding: 24px 0;
+  padding: 10px 0;
 }
 
 .mobile-menu-link {
   display: flex;
   align-items: baseline;
-  gap: 14px;
-  padding: 6px 0;
+  gap: 12px;
+  padding: 4px 0;
   color: var(--text-1);
   transition: color 0.2s, transform 0.2s;
 }
@@ -454,21 +481,21 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 
 .mobile-link-num {
   font-family: var(--font-d);
-  font-size: 16px;
+  font-size: 14px;
   color: var(--lime);
   letter-spacing: .1em;
 }
 
 .mobile-link-text {
   font-family: var(--font-d);
-  font-size: clamp(38px, 9vw, 54px);
-  line-height: .95;
+  font-size: clamp(30px, 7vw, 42px);
+  line-height: 1.05;
   letter-spacing: .04em;
   text-transform: uppercase;
 }
 
 .mobile-menu-cta-wrap {
-  margin-top: 10px;
+  margin-top: 6px;
 }
 .mobile-menu-cta-btn {
   display: inline-flex;
@@ -476,28 +503,28 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   justify-content: center;
   gap: 10px;
   width: 100%;
-  padding: 16px 28px;
+  padding: 14px 24px;
   background: linear-gradient(135deg, #c8ff00, #00e5ff);
   color: #05050a;
   border-radius: 100px;
   font-family: var(--font-b);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  box-shadow: 0 0 30px rgba(200, 255, 0, 0.4);
+  box-shadow: 0 0 24px rgba(200, 255, 0, 0.4);
 }
 
 .mobile-menu-footer {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding-top: 20px;
+  gap: 6px;
+  padding-top: 14px;
   border-top: 1px solid var(--border);
 }
 .mobile-social-link, .mobile-phone-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--text-2);
 }
 
@@ -1051,6 +1078,7 @@ footer { background:var(--bg-2); border-top:1px solid var(--border); overflow:hi
 @media (max-width: 768px) {
   .nav-links  { display: none; }
   .nav-burger { display: flex; }
+  .hero-scroll-hint { display: none !important; }
 
   /* Mobile Story Split */
   .story-split { display:flex; flex-direction:column; gap: 0; }
@@ -1178,6 +1206,10 @@ footer { background:var(--bg-2); border-top:1px solid var(--border); overflow:hi
 /* Mobile Cyber Floating Quick Dock */
 .mobile-cyber-dock {
   display: none;
+}
+
+body.mobile-menu-open .mobile-cyber-dock {
+  display: none !important;
 }
 
 @media (max-width: 768px) {

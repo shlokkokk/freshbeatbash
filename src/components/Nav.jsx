@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Mic2, Phone } from 'lucide-react'
+import { ArrowRight, Mic2, Phone, X } from 'lucide-react'
 import { InstagramIcon } from './Icons'
 
 const links = [
@@ -29,15 +29,18 @@ export function Nav() {
       document.body.style.overflow = 'hidden'
       document.documentElement.style.overflow = 'hidden'
       document.body.style.touchAction = 'none'
+      document.body.classList.add('mobile-menu-open')
     } else {
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
       document.body.style.touchAction = ''
+      document.body.classList.remove('mobile-menu-open')
     }
     return () => {
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
       document.body.style.touchAction = ''
+      document.body.classList.remove('mobile-menu-open')
     }
   }, [open])
 
@@ -113,8 +116,13 @@ export function Nav() {
             <div className="mobile-menu-orb orb-pink" aria-hidden="true" />
 
             <div className="mobile-menu-header">
-              <img src="/logo.png" alt="Fresh Beats Bash" width={32} height={32} />
-              <span>FRESH BEATS BASH</span>
+              <div className="mobile-menu-brand">
+                <img src="/logo.png" alt="Fresh Beats Bash" width={32} height={32} />
+                <span>FRESH BEATS BASH</span>
+              </div>
+              <button className="mobile-close-btn" onClick={close} aria-label="Close Menu">
+                <X size={15} /> CLOSE
+              </button>
             </div>
 
             <motion.ul className="mobile-menu-links">

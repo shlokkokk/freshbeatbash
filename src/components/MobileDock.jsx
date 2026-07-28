@@ -23,14 +23,8 @@ export function MobileDock() {
           className="mobile-dock-btn dock-secondary"
           aria-label="Instagram"
         >
-          <InstagramIcon size={18} />
+          <InstagramIcon size={16} />
           <span>IG</span>
-        </a>
-
-        {/* Explore Anchors */}
-        <a href="#highlights" className="mobile-dock-btn dock-secondary" aria-label="Explore Highlights">
-          <Compass size={18} />
-          <span>VIBES</span>
         </a>
 
         {/* Primary Registration CTA */}
@@ -41,8 +35,8 @@ export function MobileDock() {
           className="mobile-dock-btn dock-primary"
           aria-label="Register Now"
         >
-          <Ticket size={18} />
-          <span>REGISTER</span>
+          <Ticket size={16} />
+          <span>REGISTER NOW</span>
           <span className="dock-btn-glow" />
         </a>
       </div>
