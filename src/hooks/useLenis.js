@@ -10,6 +10,8 @@ export function useLenis() {
       syncTouch: false,
     })
 
+    window.lenis = lenis
+
     function raf(time) {
       lenis.raf(time)
       requestAnimationFrame(raf)
@@ -18,6 +20,7 @@ export function useLenis() {
 
     return () => {
       cancelAnimationFrame(id)
+      delete window.lenis
       lenis.destroy()
     }
   }, [])

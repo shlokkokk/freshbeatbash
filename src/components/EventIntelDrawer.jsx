@@ -6,23 +6,45 @@ import { Calendar, Clock, MapPin, Sparkles, X, Ticket, Mic2 } from 'lucide-react
 const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
 
 export function EventIntelDrawer({ open, onClose }) {
-  // Lock body & document scroll completely when Event Intel drawer is open
+  // Lock Lenis & body scroll + auto-close on scroll attempt
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden'
-      document.documentElement.style.overflow = 'hidden'
-      document.body.style.touchAction = 'none'
-    } else {
+    if (!open) {
+      window.lenis?.start()
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
       document.body.style.touchAction = ''
+      return
     }
+
+    // Freeze Lenis & native CSS scroll
+    window.lenis?.stop()
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.touchAction = 'none'
+
+    // If user attempts to scroll or swipe, close the drawer
+    let initialY = window.scrollY
+    const handleScroll = () => {
+      if (Math.abs(window.scrollY - initialY) > 5) {
+        onClose()
+      }
+    }
+    const handleWheel = () => {
+      onClose()
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('wheel', handleWheel, { passive: true })
+
     return () => {
+      window.lenis?.start()
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
       document.body.style.touchAction = ''
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('wheel', handleWheel)
     }
-  }, [open])
+  }, [open, onClose])
 
   if (typeof document === 'undefined') return null
 
@@ -32,11 +54,12 @@ export function EventIntelDrawer({ open, onClose }) {
         <div
           className="event-side-backdrop"
           onClick={onClose}
-          onTouchMove={e => e.stopPropagation()}
+          onTouchMove={onClose}
         >
           <motion.aside
             className="event-side-panel"
             onClick={e => e.stopPropagation()}
+            onTouchMove={e => e.stopPropagation()}
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
