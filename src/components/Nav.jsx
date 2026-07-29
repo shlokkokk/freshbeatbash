@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Mic2, Phone, X, Calendar, Clock, MapPin } from 'lucide-react'
+import { ArrowRight, Mic2, Phone, X, Calendar, Clock, MapPin, ChevronRight, Sparkles, Ticket } from 'lucide-react'
 import { InstagramIcon } from './Icons'
 
 const links = [
@@ -13,6 +13,7 @@ const links = [
 ]
 
 const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
+const PASS_WA_URL = 'https://wa.me/918758766111?text=Hey!%20I%20want%20to%20get%20an%20Attendee%20Entry%20Pass%20for%20Fresh%20Beats%20Bash%202026.'
 
 export function Nav({ onOpenIntel }) {
   const [scrolled, setScrolled] = useState(false)
@@ -24,20 +25,23 @@ export function Nav({ onOpenIntel }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Lock body & document scroll completely when menu is open
+  // Lock body, document & Lenis scroll completely when menu is open
   useEffect(() => {
     if (open) {
+      window.lenis?.stop()
       document.body.style.overflow = 'hidden'
       document.documentElement.style.overflow = 'hidden'
       document.body.style.touchAction = 'none'
       document.body.classList.add('mobile-menu-open')
     } else {
+      window.lenis?.start()
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
       document.body.style.touchAction = ''
       document.body.classList.remove('mobile-menu-open')
     }
     return () => {
+      window.lenis?.start()
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
       document.body.style.touchAction = ''
@@ -53,20 +57,20 @@ export function Nav({ onOpenIntel }) {
       opacity: 1,
       transition: {
         duration: 0.3,
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
+        staggerChildren: 0.06,
+        delayChildren: 0.08,
       },
     },
     exit: {
       opacity: 0,
-      transition: { duration: 0.25, staggerChildren: 0.04, staggerDirection: -1 },
+      transition: { duration: 0.25, staggerChildren: 0.03, staggerDirection: -1 },
     },
   }
 
   const itemVariants = {
-    hidden:  { y: 40, opacity: 0 },
-    visible: { y: 0,  opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-    exit:    { y: -20, opacity: 0, transition: { duration: 0.2 } },
+    hidden:  { y: 30, opacity: 0 },
+    visible: { y: 0,  opacity: 1, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
+    exit:    { y: -15, opacity: 0, transition: { duration: 0.2 } },
   }
 
   return (
@@ -111,7 +115,7 @@ export function Nav({ onOpenIntel }) {
         </div>
       </nav>
 
-      {/* Fullscreen Mobile Drawer */}
+      {/* Fullscreen Cyber Stage Holographic Control Deck */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -121,7 +125,7 @@ export function Nav({ onOpenIntel }) {
             animate="visible"
             exit="exit"
           >
-            {/* Ambient Background Glow Orbs inside menu */}
+            {/* Ambient Background Spotlights inside menu */}
             <div className="mobile-menu-orb orb-lime" aria-hidden="true" />
             <div className="mobile-menu-orb orb-pink" aria-hidden="true" />
 
@@ -131,42 +135,78 @@ export function Nav({ onOpenIntel }) {
                 <span>FRESH BEATS BASH</span>
               </div>
               <button className="mobile-close-btn" onClick={close} aria-label="Close Menu">
-                <X size={15} /> CLOSE
+                <X size={14} /> Close
               </button>
             </div>
 
+            {/* Embedded Event Intel Quick Banner */}
+            <motion.div
+              variants={itemVariants}
+              className="mobile-intel-banner"
+              onClick={() => { close(); onOpenIntel(); }}
+            >
+              <div className="banner-left">
+                <Sparkles size={13} className="text-lime" />
+                <span className="banner-date">22 AUG '26</span>
+                <span className="banner-sep">•</span>
+                <span className="banner-time">5 PM</span>
+                <span className="banner-sep">•</span>
+                <span className="banner-venue">VENUE SOON</span>
+              </div>
+              <span className="banner-tag">PASS &amp; INFO ↗</span>
+            </motion.div>
+
+            {/* Stage Access Navigation Cards */}
             <motion.ul className="mobile-menu-links">
               {links.map(l => (
                 <motion.li key={l.href} variants={itemVariants}>
                   <a href={l.href} className="mobile-menu-link" onClick={close}>
                     <span className="mobile-link-num">{l.num}</span>
                     <span className="mobile-link-text">{l.label}</span>
+                    <ChevronRight size={18} className="mobile-link-arrow" />
                   </a>
                 </motion.li>
               ))}
+            </motion.ul>
 
-              <motion.li variants={itemVariants} className="mobile-menu-cta-wrap">
+            {/* Dual Action CTA Grid & Contact Hub */}
+            <div className="mobile-menu-bottom">
+              <motion.div variants={itemVariants} className="mobile-menu-cta-grid">
+                <a
+                  href={PASS_WA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mobile-cta-card card-attendee"
+                  onClick={close}
+                >
+                  <Ticket size={15} className="cta-card-icon text-purple" />
+                  <span>Attendee Pass ↗</span>
+                </a>
+
                 <a
                   href={REG_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mobile-menu-cta-btn"
+                  className="mobile-cta-card card-performance"
                   onClick={close}
                 >
-                  <span className="btn-pulse-dot" />
-                  <Mic2 size={18} /> Register Your Performance
+                  <Mic2 size={15} className="cta-card-icon" />
+                  <span>Register Act ↗</span>
                 </a>
-              </motion.li>
-            </motion.ul>
+              </motion.div>
 
-            <motion.div className="mobile-menu-footer" variants={itemVariants}>
-              <a href="https://www.instagram.com/freshbeatsbash" target="_blank" rel="noopener noreferrer" className="mobile-social-link">
-                <InstagramIcon size={16} /> @freshbeatsbash
-              </a>
-              <a href="tel:+917874712871" className="mobile-phone-link">
-                <Phone size={14} /> Manav: +91 78747 12871
-              </a>
-            </motion.div>
+              <motion.div className="mobile-menu-footer" variants={itemVariants}>
+                <a href="tel:+918758766111" className="mobile-contact-chip">
+                  <Phone size={12} /> Shiv
+                </a>
+                <a href="https://www.instagram.com/freshbeatsbash" target="_blank" rel="noopener noreferrer" className="mobile-contact-chip">
+                  <InstagramIcon size={12} /> @freshbeatsbash
+                </a>
+                <a href="tel:+917874712871" className="mobile-contact-chip">
+                  <Phone size={12} /> Manav
+                </a>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
