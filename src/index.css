@@ -777,6 +777,8 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   flex-wrap: wrap;
   justify-content: center;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .hero-event-pass:hover {
@@ -1027,6 +1029,24 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   border-color: var(--lime);
   transform: translateX(-3px);
   box-shadow: 0 0 20px rgba(200, 255, 0, 0.28);
+}
+
+.side-act-action-card {
+  text-decoration: none;
+  background: rgba(0, 229, 255, 0.08);
+  border-color: rgba(0, 229, 255, 0.35);
+  transition: all 0.25s ease;
+  margin-top: 2px;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10010;
+}
+.side-act-action-card:hover {
+  background: rgba(0, 229, 255, 0.16);
+  border-color: var(--cyan);
+  transform: translateX(-3px);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.28);
 }
 
 .hero-tagline { font-size:clamp(14px,2vw,20px); color:var(--text-2); max-width:520px; line-height:1.55; }

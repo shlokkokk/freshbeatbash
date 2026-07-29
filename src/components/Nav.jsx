@@ -14,7 +14,7 @@ const links = [
 
 const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
 
-export function Nav() {
+export function Nav({ onOpenIntel }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen]         = useState(false)
 
@@ -78,7 +78,7 @@ export function Nav() {
             <span className="nav-logo-text">FRESH BEATS BASH</span>
           </a>
 
-          <div className="nav-hud-chip">
+          <div className="nav-hud-chip" onClick={onOpenIntel} role="button" tabIndex={0} style={{ cursor: 'pointer' }}>
             <span className="hud-part"><Calendar size={11} /> 22 AUG '26</span>
             <span className="hud-dot">•</span>
             <span className="hud-part"><Clock size={11} /> 5 PM</span>

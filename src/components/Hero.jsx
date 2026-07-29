@@ -264,18 +264,10 @@ const WORDS = [
   { text: 'BASH',  cls: 'htl-bash'  },
 ]
 
-export function Hero() {
+export function Hero({ onOpenIntel }) {
   const canvasRef = useRef(null)
   const heroRef   = useRef(null)
-  const [showEventSheet, setShowEventSheet] = useState(false)
   useHeroCanvas(canvasRef)
-
-  useEffect(() => {
-    if (!showEventSheet) return
-    const onScroll = () => setShowEventSheet(false)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [showEventSheet])
 
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const contentY  = useTransform(scrollYProgress, [0, 1], [0, -90])
@@ -325,6 +317,9 @@ export function Hero() {
         {/* Holographic Cyber Event Pass Pill (Desktop Full / Mobile Trigger) */}
         <motion.div
           className="hero-event-pass"
+          onClick={onOpenIntel}
+          role="button"
+          tabIndex={0}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: .6, delay: 0.75, ease: [0.16,1,0.3,1] }}
@@ -346,16 +341,11 @@ export function Hero() {
             </div>
           </div>
 
-          <button
-            className="mobile-pass-trigger-btn"
-            onClick={() => setShowEventSheet(true)}
-            aria-label="View Event Details"
-          >
-            <span className="btn-pulse-dot" />
+          <div className="mobile-pass-trigger-btn">
             <Sparkles size={13} className="sparkle-icon" />
             <span>EVENT INTEL · 22 AUG '26</span>
             <ChevronRight size={14} className="arrow-icon" />
-          </button>
+          </div>
         </motion.div>
 
         {/* Tagline */}
@@ -389,84 +379,6 @@ export function Hero() {
           </MagneticButton>
         </motion.div>
       </motion.div>
-
-      {/* Cyber Side Panel Intel Drawer (Rendered via Portal directly to body for 100% z-index precedence) */}
-      <AnimatePresence>
-        {showEventSheet && typeof document !== 'undefined' && createPortal(
-          <div className="event-side-backdrop" onClick={() => setShowEventSheet(false)}>
-            <motion.aside
-              className="event-side-panel"
-              onClick={e => e.stopPropagation()}
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', stiffness: 360, damping: 32 }}
-            >
-              <div className="side-panel-header">
-                <div className="side-panel-title">
-                  <Sparkles size={14} className="text-lime" />
-                  <span>EVENT INTEL</span>
-                </div>
-                <button
-                  className="side-panel-close"
-                  onClick={() => setShowEventSheet(false)}
-                  aria-label="Close details"
-                >
-                  <X size={15} />
-                </button>
-              </div>
-
-              <div className="side-panel-body">
-                <div className="side-detail-card">
-                  <Calendar size={17} className="icon-lime" />
-                  <div className="side-detail-text">
-                    <span className="side-label">DATE</span>
-                    <strong className="side-val">22 AUG 2026</strong>
-                  </div>
-                </div>
-
-                <div className="side-detail-card">
-                  <Clock size={17} className="icon-cyan" />
-                  <div className="side-detail-text">
-                    <span className="side-label">TIME</span>
-                    <strong className="side-val">5:00 PM ONWARDS</strong>
-                  </div>
-                </div>
-
-                <div className="side-detail-card">
-                  <MapPin size={17} className="icon-pink" />
-                  <div className="side-detail-text">
-                    <span className="side-label">VENUE</span>
-                    <strong className="side-val text-pink">COMING SOON</strong>
-                  </div>
-                </div>
-
-                <a
-                  href="https://wa.me/918758766111?text=Hey!%20I%20want%20to%20get%20an%20Attendee%20Entry%20Pass%20for%20Fresh%20Beats%20Bash%202026."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="side-detail-card side-pass-action-card"
-                  onClick={e => {
-                    e.stopPropagation()
-                    setShowEventSheet(false)
-                    window.open(
-                      'https://wa.me/918758766111?text=Hey!%20I%20want%20to%20get%20an%20Attendee%20Entry%20Pass%20for%20Fresh%20Beats%20Bash%202026.',
-                      '_blank'
-                    )
-                  }}
-                >
-                  <Ticket size={17} className="icon-purple" />
-                  <div className="side-detail-text">
-                    <span className="side-label">ATTENDEE ENTRY PASS</span>
-                    <strong className="side-val text-lime">GET PASS ON WHATSAPP ↗</strong>
-                  </div>
-                </a>
-              </div>
-            </motion.aside>
-          </div>,
-          document.body
-        )}
-      </AnimatePresence>
     </section>
   )
 }
