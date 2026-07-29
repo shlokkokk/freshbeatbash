@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
-import { X, Maximize2, Play, Pause, Volume2, VolumeX, Sparkles, Film, ChevronLeft, ChevronRight, Flame, Users, Heart, Smile, ZoomIn, ZoomOut } from 'lucide-react'
+import { X, Maximize2, Play, Pause, Volume2, VolumeX, Sparkles, Film, ChevronLeft, ChevronRight, Flame, Users, Heart, Smile } from 'lucide-react'
 import { InstagramIcon } from './Icons'
 import { Reveal } from './Reveal'
 
@@ -71,14 +71,12 @@ export function Gallery() {
   const [selectedItemIndex, setSelectedItemIndex] = useState(null)
   const [isPlaying, setIsPlaying] = useState(true)
   const [isMuted, setIsMuted] = useState(true)
-  const [isZoomed, setIsZoomed] = useState(false)
 
   const videoRef = useRef(null)
   const selectedItem = selectedItemIndex !== null ? GALLERY_ITEMS[selectedItemIndex] : null
 
   const handlePrev = (e) => {
     e.stopPropagation()
-    setIsZoomed(false)
     if (selectedItemIndex !== null) {
       setSelectedItemIndex((prev) => (prev > 0 ? prev - 1 : GALLERY_ITEMS.length - 1))
     }
@@ -86,25 +84,34 @@ export function Gallery() {
 
   const handleNext = (e) => {
     e.stopPropagation()
-    setIsZoomed(false)
     if (selectedItemIndex !== null) {
       setSelectedItemIndex((prev) => (prev < GALLERY_ITEMS.length - 1 ? prev + 1 : 0))
     }
   }
 
-  // Keyboard navigation for Lightbox
+  // Scroll Lock & Keyboard navigation for Lightbox
   useEffect(() => {
+    if (selectedItemIndex !== null) {
+      window.lenis?.stop()
+      document.body.style.overflow = 'hidden'
+    } else {
+      window.lenis?.start()
+      document.body.style.overflow = ''
+    }
+
     const handleKeyDown = (e) => {
       if (selectedItemIndex === null) return
-      if (e.key === 'Escape') {
-        setIsZoomed(false)
-        setSelectedItemIndex(null)
-      }
+      if (e.key === 'Escape') setSelectedItemIndex(null)
       if (e.key === 'ArrowLeft') handlePrev(e)
       if (e.key === 'ArrowRight') handleNext(e)
     }
+
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.lenis?.start()
+      document.body.style.overflow = ''
+    }
   }, [selectedItemIndex])
 
   const handleVideoEnded = () => {
@@ -236,10 +243,7 @@ export function Gallery() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     className={`bento-cell bento-${item.span}`}
-                    onClick={() => {
-                      setIsZoomed(false)
-                      setSelectedItemIndex(idx)
-                    }}
+                    onClick={() => setSelectedItemIndex(idx)}
                   >
                     <div className="bento-img-wrap">
                       <img
@@ -278,10 +282,7 @@ export function Gallery() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                onClick={() => {
-                  setIsZoomed(false)
-                  setSelectedItemIndex(null)
-                }}
+                onClick={() => setSelectedItemIndex(null)}
               >
                 <div className="cinema-container" onClick={e => e.stopPropagation()}>
                   {/* Left / Right Nav Arrows */}
@@ -305,24 +306,14 @@ export function Gallery() {
                         className="cinema-video"
                       />
                     ) : (
-                      <div
-                        className="cinema-img-zoom-viewport"
-                        onClick={() => setIsZoomed(!isZoomed)}
-                        title={isZoomed ? "Click to Zoom Out" : "Click to Zoom In"}
-                      >
-                        <motion.img
+                      <div className="cinema-img-viewport">
+                        <img
                           src={selectedItem.src}
                           alt={selectedItem.title}
                           onContextMenu={e => e.preventDefault()}
                           onDragStart={e => e.preventDefault()}
-                          animate={{ scale: isZoomed ? 2.1 : 1 }}
-                          transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                          className={`cinema-img protected-media ${isZoomed ? 'zoomed-in' : ''}`}
+                          className="cinema-img protected-media"
                         />
-                        <div className="zoom-indicator-pill">
-                          {isZoomed ? <ZoomOut size={12} /> : <ZoomIn size={12} />}
-                          <span>{isZoomed ? 'TAP TO UNZOOM' : 'TAP TO ZOOM'}</span>
-                        </div>
                       </div>
                     )}
 
@@ -347,10 +338,7 @@ export function Gallery() {
                   {/* Close Pill Button */}
                   <button
                     className="cinema-close-btn"
-                    onClick={() => {
-                      setIsZoomed(false)
-                      setSelectedItemIndex(null)
-                    }}
+                    onClick={() => setSelectedItemIndex(null)}
                     aria-label="Close Lightbox"
                   >
                     <X size={18} />
