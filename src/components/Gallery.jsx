@@ -252,7 +252,7 @@ export function Gallery() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className={`bento-cell bento-${item.span}`}
+                    className={`bento-cell bento-${item.span} cell-item-${item.id}`}
                     onClick={() => setSelectedItemIndex(idx)}
                   >
                     <div className="bento-img-wrap">
