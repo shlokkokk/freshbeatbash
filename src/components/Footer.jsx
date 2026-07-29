@@ -84,7 +84,10 @@ export function Footer() {
 
         <div className="footer-bottom">
           <p className="footer-copy">&copy; 2026 Fresh Beats Bash. All rights reserved.</p>
-          <p className="footer-credit">Crafted with obsession by <span className="text-lime">Shiv Ramavat</span></p>
+          <div className="footer-credit-pill">
+            <span>Designed &amp; Built by</span>
+            <span className="credit-name">Shlok Shah</span>
+          </div>
         </div>
       </div>
     </footer>

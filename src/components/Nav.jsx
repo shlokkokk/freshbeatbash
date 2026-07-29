@@ -206,6 +206,10 @@ export function Nav({ onOpenIntel }) {
                   <Phone size={12} /> Manav
                 </a>
               </motion.div>
+
+              <motion.div className="mobile-menu-credit" variants={itemVariants}>
+                <span>Designed &amp; Built by <strong className="credit-author">Shlok Shah</strong></span>
+              </motion.div>
             </div>
           </motion.div>
         )}
