@@ -79,7 +79,6 @@ export function Nav() {
           </a>
 
           <div className="nav-hud-chip">
-            <span className="btn-pulse-dot" />
             <span className="hud-part"><Calendar size={11} /> 22 AUG '26</span>
             <span className="hud-dot">•</span>
             <span className="hud-part"><Clock size={11} /> 5 PM</span>
