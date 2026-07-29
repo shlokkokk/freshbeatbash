@@ -1755,6 +1755,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 
 /* Media Anti-Download & Long-Press Protection */
 .protected-media {
+  pointer-events: none !important;
   -webkit-touch-callout: none !important;
   -webkit-user-drag: none !important;
   -khtml-user-drag: none !important;
@@ -1777,6 +1778,9 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   justify-content: center;
   background: #000;
   cursor: zoom-in;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  user-select: none;
 }
 
 .cinema-img.zoomed-in {

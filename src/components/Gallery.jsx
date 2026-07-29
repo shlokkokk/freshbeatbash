@@ -177,7 +177,7 @@ export function Gallery() {
                           onEnded={handleVideoEnded}
                           onContextMenu={e => e.preventDefault()}
                           onDragStart={e => e.preventDefault()}
-                          className="bento-video-player protected-media"
+                          className="bento-video-player"
                           onClick={() => setSelectedItemIndex(idx)}
                         />
 
@@ -302,11 +302,7 @@ export function Gallery() {
                         autoPlay
                         muted
                         playsInline
-                        onContextMenu={e => e.preventDefault()}
-                        onDragStart={e => e.preventDefault()}
-                        controlsList="nodownload noremoteplayback"
-                        disablePictureInPicture
-                        className="cinema-video protected-media"
+                        className="cinema-video"
                       />
                     ) : (
                       <div
