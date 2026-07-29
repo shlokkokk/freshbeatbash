@@ -760,59 +760,77 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   100% { background-position: 200%; }
 }
 
-/* ─── Holographic Cyber Event Pass Pill (Hero) ─── */
+/* ─── Sleek Cyber Event Pass Pill ─── */
 .hero-event-pass {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 6px 20px;
-  background: rgba(10, 10, 24, 0.75);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  gap: 14px;
+  padding: 8px 18px 8px 20px;
+  background: rgba(10, 10, 24, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 100px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  margin-top: 2px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  margin-top: 6px;
   max-width: 92vw;
-  flex-wrap: wrap;
-  justify-content: center;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   pointer-events: auto;
+  user-select: none;
 }
 
 .hero-event-pass:hover {
   border-color: rgba(200, 255, 0, 0.4);
-  box-shadow: 0 0 35px rgba(200, 255, 0, 0.25), 0 12px 40px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 30px rgba(200, 255, 0, 0.2), 0 14px 45px rgba(0, 0, 0, 0.8);
   transform: translateY(-2px);
 }
 
-.desktop-pass-content {
+.pass-date-part {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--text-1);
 }
 
-.mobile-pass-trigger-btn {
-  display: none;
+.pass-icon-lime {
+  color: var(--lime);
+  filter: drop-shadow(0 0 5px rgba(200, 255, 0, 0.6));
+}
+
+.pass-v-divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.pass-intel-trigger {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  background: transparent;
-  border: none;
-  color: var(--text-1);
+  gap: 6px;
   font-family: var(--font-mono);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.08em;
-  cursor: pointer;
-  padding: 4px 6px;
+  color: var(--lime);
+  transition: all 0.25s ease;
+}
+
+.pass-trigger-arrow {
+  color: var(--lime);
+  transition: transform 0.25s ease;
+}
+
+.hero-event-pass:hover .pass-trigger-arrow {
+  transform: translateX(3px);
 }
 
 .mobile-pass-trigger-btn .sparkle-icon {
   color: var(--lime);
-}
-.mobile-pass-trigger-btn .arrow-icon {
-  color: var(--text-3);
 }
 
 .pass-pill-segment {

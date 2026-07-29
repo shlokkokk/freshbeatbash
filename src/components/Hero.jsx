@@ -314,7 +314,7 @@ export function Hero({ onOpenIntel }) {
           ))}
         </h1>
 
-        {/* Holographic Cyber Event Pass Pill (Desktop Full / Mobile Trigger) */}
+        {/* Sleek Cyber Event Pass Pill */}
         <motion.div
           className="hero-event-pass"
           onClick={onOpenIntel}
@@ -324,27 +324,16 @@ export function Hero({ onOpenIntel }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: .6, delay: 0.75, ease: [0.16,1,0.3,1] }}
         >
-          <div className="desktop-pass-content">
-            <div className="pass-pill-segment">
-              <Calendar size={13} className="pass-icon pass-icon-lime" />
-              <span className="pass-val">22 AUG 2026</span>
-            </div>
-            <span className="pass-dot-divider" />
-            <div className="pass-pill-segment">
-              <Clock size={13} className="pass-icon pass-icon-cyan" />
-              <span className="pass-val">5:00 PM ONWARDS</span>
-            </div>
-            <span className="pass-dot-divider" />
-            <div className="pass-pill-segment">
-              <MapPin size={13} className="pass-icon pass-icon-pink" />
-              <span className="pass-val pass-venue-highlight">VENUE ANNOUNCING SOON</span>
-            </div>
+          <div className="pass-date-part">
+            <Calendar size={13} className="pass-icon-lime" />
+            <span className="pass-val">22 AUG 2026</span>
           </div>
 
-          <div className="mobile-pass-trigger-btn">
-            <Sparkles size={13} className="sparkle-icon" />
-            <span>EVENT INTEL · 22 AUG '26</span>
-            <ChevronRight size={14} className="arrow-icon" />
+          <span className="pass-v-divider" />
+
+          <div className="pass-intel-trigger">
+            <span>EVENT DETAILS</span>
+            <ChevronRight size={14} className="pass-trigger-arrow" />
           </div>
         </motion.div>
 
