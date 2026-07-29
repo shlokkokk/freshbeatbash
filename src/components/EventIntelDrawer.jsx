@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Calendar, Clock, MapPin, Sparkles, X, Ticket, Mic2 } from 'lucide-react'
@@ -5,12 +6,34 @@ import { Calendar, Clock, MapPin, Sparkles, X, Ticket, Mic2 } from 'lucide-react
 const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
 
 export function EventIntelDrawer({ open, onClose }) {
+  // Lock body & document scroll completely when Event Intel drawer is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+      document.body.style.touchAction = 'none'
+    } else {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+      document.body.style.touchAction = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+      document.body.style.touchAction = ''
+    }
+  }, [open])
+
   if (typeof document === 'undefined') return null
 
   return createPortal(
     <AnimatePresence>
       {open && (
-        <div className="event-side-backdrop" onClick={onClose}>
+        <div
+          className="event-side-backdrop"
+          onClick={onClose}
+          onTouchMove={e => e.stopPropagation()}
+        >
           <motion.aside
             className="event-side-panel"
             onClick={e => e.stopPropagation()}
