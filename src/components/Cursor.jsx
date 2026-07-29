@@ -22,13 +22,13 @@ export function Cursor() {
     }
 
     const handleMouseOver = e => {
-      const target = e.target.closest('a, button, .btn, .gallery-cell, .hl-card, .crew-card, .perf-item')
+      const target = e.target.closest('a, button, .btn, .gallery-cell, .bento-cell, .hl-card, .crew-card, .perf-item')
       if (!target) {
         setHoverState({ mode: 'default', text: '' })
         return
       }
 
-      if (target.closest('.gallery-cell')) {
+      if (target.closest('.gallery-cell, .bento-cell')) {
         setHoverState({ mode: 'gallery', text: 'VIEW' })
       } else if (target.closest('.hl-card, .hl-track')) {
         setHoverState({ mode: 'drag', text: 'EXPLORE' })
