@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
-import { X, Maximize2, Play, Pause, Volume2, VolumeX, Sparkles, Film, ChevronLeft, ChevronRight, Flame, Users, Heart, Smile } from 'lucide-react'
+import { X, Maximize2, Play, Pause, Volume2, VolumeX, Sparkles, Film, ChevronLeft, ChevronRight, Flame, Users, Heart, Smile, Zap } from 'lucide-react'
 import { InstagramIcon } from './Icons'
 import { Reveal } from './Reveal'
 
@@ -16,13 +16,23 @@ const GALLERY_ITEMS = [
     desc: 'Uncut memories & energy from last year\'s bash'
   },
   {
+    id: 'fest-6',
+    type: 'image',
+    src: '/gallery/fest-6.jpg',
+    title: 'Fresh Beats Family',
+    tag: 'THE CREW',
+    icon: Smile,
+    span: 'crew-hero',
+    desc: 'The faces behind the memories'
+  },
+  {
     id: 'fest-2',
     type: 'image',
     src: '/gallery/fest-2.jpg',
     title: 'Electric Nights',
     tag: 'NIGHT AT THE BASH',
     icon: Flame,
-    span: 'col-3',
+    span: 'col-4',
     desc: 'The crowd bringing pure warmth & energy'
   },
   {
@@ -32,18 +42,8 @@ const GALLERY_ITEMS = [
     title: 'Under The Spotlights',
     tag: 'MIDNIGHT RECAP',
     icon: Sparkles,
-    span: 'col-3',
+    span: 'col-4',
     desc: 'Laughter and stories made beneath the lights'
-  },
-  {
-    id: 'fest-3',
-    type: 'image',
-    src: '/gallery/fest-3.png',
-    title: 'Fresh Beats Family',
-    tag: 'THE CREW',
-    icon: Smile,
-    span: 'crew-hero',
-    desc: 'The faces behind the memories'
   },
   {
     id: 'fest-4',
@@ -52,7 +52,7 @@ const GALLERY_ITEMS = [
     title: 'Friends & Vibes',
     tag: 'TOGETHER',
     icon: Users,
-    span: 'col-3',
+    span: 'col-4',
     desc: 'The people who make Fresh Beats Bash unforgettable'
   },
   {
@@ -62,8 +62,18 @@ const GALLERY_ITEMS = [
     title: 'Shared Moments',
     tag: 'MEMORIES',
     icon: Heart,
-    span: 'col-3',
+    span: 'col-6',
     desc: 'Snapshots of a night to remember'
+  },
+  {
+    id: 'fest-3',
+    type: 'image',
+    src: '/gallery/fest-3.png',
+    title: 'Nightfall Energy',
+    tag: 'CROWD HIGHLIGHTS',
+    icon: Zap,
+    span: 'col-6',
+    desc: 'Uncut moments from the peak of the night'
   },
 ]
 
