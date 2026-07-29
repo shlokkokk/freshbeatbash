@@ -25,7 +25,7 @@ export function Stage() {
           <h2 className="stage-title">Got a Talent?<br /><em>Own the Spotlight.</em></h2>
           <p className="stage-body">
             From dance to poetry, stand-up to serenade — every form of expression has a place on
-            our stage. Register your act and perform in front of 500+ of your peers. This is your moment.
+            our stage. Register your act and perform in front of 300+ of your peers. This is your moment.
           </p>
           <div className="perf-grid">
             {PERFS.map(({ Icon, label }) => (

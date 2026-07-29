@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Phone, PhoneCall, Crown, Palette, Zap, Radio } from 'lucide-react'
+import { PhoneCall, ArrowUpRight } from 'lucide-react'
 import { Reveal } from './Reveal'
 
 const CREW = [
-  { name:'Manav Solanki',  role:'Lead Organizer',    phone:'+91 78747 12871', tel:'917874712871', Icon: Crown,   accent:'ca-lime',   tag:'LEAD'   },
-  { name:'Shiv Ramavat',   role:'Creative Director', phone:'+91 87587 66111', tel:'918758766111', Icon: Palette, accent:'ca-cyan',   tag:'DESIGN' },
-  { name:'Dhairya Manvar', role:'Event Coordinator', phone:'+91 95102 02351', tel:'919510202351', Icon: Zap,     accent:'ca-pink',   tag:'EVENTS' },
-  { name:'Roshan Udvadia', role:'Operations Lead',   phone:'+91 63599 10536', tel:'916359910536', Icon: Radio,   accent:'ca-purple', tag:'OPS'    },
+  { name: 'Manav Solanki',  phone: '+91 78747 12871', tel: '917874712871', initials: 'MS', accent: 'ca-lime'   },
+  { name: 'Shiv Ramavat',   phone: '+91 87587 66111', tel: '918758766111', initials: 'SR', accent: 'ca-cyan'   },
+  { name: 'Dhairya Manvar', phone: '+91 95102 02351', tel: '919510202351', initials: 'DM', accent: 'ca-pink'   },
+  { name: 'Roshan Udvadia', phone: '+91 63599 10536', tel: '916359910536', initials: 'RU', accent: 'ca-purple' },
 ]
 
 function CrewCard({ member, delay }) {
@@ -16,21 +16,29 @@ function CrewCard({ member, delay }) {
 
   const onMove = e => {
     const rect = e.currentTarget.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width  - .5
-    const y = (e.clientY - rect.top)  / rect.height - .5
-    setRY(x * 16); setRX(-y * 16)
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    setRY(x * 14)
+    setRX(-y * 14)
   }
-  const onLeave = () => { setRX(0); setRY(0) }
+  const onLeave = () => {
+    setRX(0)
+    setRY(0)
+  }
 
   const onTouchMove = e => {
     if (!e.touches[0]) return
     const rect = e.currentTarget.getBoundingClientRect()
     const touch = e.touches[0]
-    const x = (touch.clientX - rect.left) / rect.width  - .5
-    const y = (touch.clientY - rect.top)  / rect.height - .5
-    setRY(x * 16); setRX(-y * 16)
+    const x = (touch.clientX - rect.left) / rect.width - 0.5
+    const y = (touch.clientY - rect.top) / rect.height - 0.5
+    setRY(x * 14)
+    setRX(-y * 14)
   }
-  const onTouchEnd = () => { setRX(0); setRY(0) }
+  const onTouchEnd = () => {
+    setRX(0)
+    setRY(0)
+  }
 
   return (
     <Reveal delay={delay}>
@@ -42,25 +50,34 @@ function CrewCard({ member, delay }) {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
         animate={{ rotateX, rotateY }}
-        transition={{ type:'spring', stiffness:280, damping:26 }}
+        transition={{ type: 'spring', stiffness: 280, damping: 26 }}
         style={{ transformPerspective: 900 }}
       >
-        {/* Holographic Cyber Avatar Badge */}
+        <div className="crew-card-glow" aria-hidden="true" />
+
+        {/* Holographic Monogram Avatar Ring */}
         <div className={`crew-avatar-wrap ${member.accent}`}>
           <div className="crew-avatar-ring" aria-hidden="true" />
           <div className="crew-avatar-inner">
-            <member.Icon size={32} />
+            <span className="crew-initials">{member.initials}</span>
           </div>
-          <span className="crew-avatar-tag">{member.tag}</span>
         </div>
 
         <div className="crew-info">
           <h3 className="crew-name">{member.name}</h3>
-          <span className="crew-role">{member.role}</span>
-          <a href={`tel:+${member.tel}`} className="crew-phone">
-            <Phone size={13} /> {member.phone}
-            <span className="mobile-action-tag"><PhoneCall size={11} /> CALL</span>
+
+          <a href={`tel:+${member.tel}`} className="crew-phone-btn">
+            <PhoneCall size={13} /> {member.phone} <ArrowUpRight size={12} className="phone-arrow" />
           </a>
+        </div>
+
+        {/* Cyber Beat Visualizer Spectrum Bars */}
+        <div className={`crew-beat-bars ${member.accent}`} aria-hidden="true">
+          <span className="cbar cb-1" />
+          <span className="cbar cb-2" />
+          <span className="cbar cb-3" />
+          <span className="cbar cb-4" />
+          <span className="cbar cb-5" />
         </div>
       </motion.div>
     </Reveal>
@@ -73,11 +90,17 @@ export function Crew() {
       <div className="container">
         <Reveal className="section-header">
           <span className="section-eyebrow">THE TEAM</span>
-          <h2 className="section-title">The People <em>Making It Happen.</em></h2>
-          <p className="section-desc">Four people. One insane vision. Zero sleep. All for you.</p>
+          <h2 className="section-title">
+            The People <em>Behind The Bash.</em>
+          </h2>
+          <p className="section-desc">
+            Got questions or want to connect? Reach out to any of us directly.
+          </p>
         </Reveal>
         <div className="crew-grid">
-          {CREW.map((m, i) => <CrewCard key={m.name} member={m} delay={i * 0.08} />)}
+          {CREW.map((m, i) => (
+            <CrewCard key={m.name} member={m} delay={i * 0.08} />
+          ))}
         </div>
       </div>
     </section>

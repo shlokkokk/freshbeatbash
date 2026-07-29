@@ -3,7 +3,7 @@ import { useInView, animate } from 'framer-motion'
 import { Reveal } from './Reveal'
 
 const STATS = [
-  { target: 500, plus: '+', label: 'Students Expected' },
+  { target: 300, plus: '+', label: 'Students Expected' },
   { target: 20,  plus: '+', label: 'Live Performances' },
   { target: 6,   plus: '+', label: 'Hours of Madness'  },
   { target: 1,   plus: '',  label: 'Night to Remember' },

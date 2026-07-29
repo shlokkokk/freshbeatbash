@@ -136,7 +136,7 @@ export function Sponsors() {
             </div>
             <div className="sponsor-cta-action">
               <MagneticButton
-                href="tel:+917874712871"
+                href="tel:+918758766111"
                 className="btn btn-primary"
                 id="sponsor-call-btn"
               >
