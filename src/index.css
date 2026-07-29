@@ -1487,20 +1487,42 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   transform: translateY(-3px);
 }
 
-/* Bento Grid Spans */
-.bento-video-hero {
-  grid-column: span 7;
-  height: 360px;
+/* Bento Grid Spans & Order */
+@media (min-width: 993px) {
+  .bento-video-hero {
+    order: 1;
+    grid-column: span 7;
+    height: 360px;
+  }
+
+  .bento-crew-hero {
+    order: 2;
+    grid-column: span 5;
+    height: 360px;
+  }
+
+  .bento-col-3 {
+    order: 3;
+    grid-column: span 3;
+    height: 250px;
+  }
 }
 
-.bento-crew-hero {
-  grid-column: span 5;
-  height: 360px;
-}
+@media (max-width: 992px) {
+  .bento-video-hero {
+    grid-column: span 12;
+    height: 320px;
+  }
 
-.bento-col-3 {
-  grid-column: span 3;
-  height: 250px;
+  .bento-crew-hero {
+    grid-column: span 12;
+    height: 260px;
+  }
+
+  .bento-col-3 {
+    grid-column: span 6;
+    height: 220px;
+  }
 }
 
 /* Hero Video Card Styling */
@@ -1874,12 +1896,25 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
     grid-column: span 6;
     height: 220px;
   }
-  .nav-prev { left: 8px; }
-  .nav-next { right: 8px; }
-  .cinema-close-btn { top: 8px; right: 8px; }
+  .nav-prev { left: 4px; }
+  .nav-next { right: 4px; }
+  .cinema-close-btn { top: -14px; right: -10px; }
 }
 
 @media (max-width: 600px) {
+  /* Hero position shift slightly UP on mobile for perfect breathing room */
+  .hero {
+    padding-top: 75px;
+    padding-bottom: 95px;
+  }
+  .hero-content {
+    margin-top: 10px;
+    gap: 10px;
+  }
+  .hero-title {
+    font-size: clamp(52px, 12.5vw, 90px);
+  }
+
   .gallery-bento-grid {
     gap: 10px;
   }
@@ -1899,9 +1934,42 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
     padding: 12px;
   }
   .bento-item-title {
-    font-size: 15px;
+    font-size: 14px;
   }
   .btn-label { display: none; }
+
+  /* Mobile Lightbox Cinema View Overhaul */
+  .cinema-container {
+    max-height: 94vh;
+  }
+  .cinema-media-wrap {
+    max-height: 78vh;
+  }
+  .cinema-video, .cinema-img {
+    max-height: 52vh;
+  }
+  .cinema-caption-bar {
+    padding: 10px 14px;
+  }
+  .caption-text h3 {
+    font-size: 16px;
+  }
+  .caption-text p {
+    font-size: 11px;
+  }
+  .cinema-nav-btn {
+    width: 36px;
+    height: 36px;
+    top: 40%;
+  }
+  .nav-prev { left: 2px; }
+  .nav-next { right: 2px; }
+  .cinema-close-btn {
+    top: -12px;
+    right: 0px;
+    width: 34px;
+    height: 34px;
+  }
 }
 
 /* ─── Crew — Holographic Cyber Avatars ─── */

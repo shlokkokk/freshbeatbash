@@ -16,16 +16,6 @@ const GALLERY_ITEMS = [
     desc: 'Uncut memories & energy from last year\'s bash'
   },
   {
-    id: 'fest-3',
-    type: 'image',
-    src: '/gallery/fest-3.png',
-    title: 'Fresh Beats Family',
-    tag: 'THE CREW',
-    icon: Smile,
-    span: 'crew-hero',
-    desc: 'The faces behind the memories'
-  },
-  {
     id: 'fest-2',
     type: 'image',
     src: '/gallery/fest-2.jpg',
@@ -44,6 +34,16 @@ const GALLERY_ITEMS = [
     icon: Sparkles,
     span: 'col-3',
     desc: 'Laughter and stories made beneath the lights'
+  },
+  {
+    id: 'fest-3',
+    type: 'image',
+    src: '/gallery/fest-3.png',
+    title: 'Fresh Beats Family',
+    tag: 'THE CREW',
+    icon: Smile,
+    span: 'crew-hero',
+    desc: 'The faces behind the memories'
   },
   {
     id: 'fest-4',
@@ -265,11 +265,11 @@ export function Gallery() {
                 <div className="cinema-container" onClick={e => e.stopPropagation()}>
                   {/* Left / Right Nav Arrows */}
                   <button className="cinema-nav-btn nav-prev" onClick={handlePrev} aria-label="Previous">
-                    <ChevronLeft size={22} />
+                    <ChevronLeft size={20} />
                   </button>
 
                   <button className="cinema-nav-btn nav-next" onClick={handleNext} aria-label="Next">
-                    <ChevronRight size={22} />
+                    <ChevronRight size={20} />
                   </button>
 
                   {/* Media Content */}
@@ -279,6 +279,8 @@ export function Gallery() {
                         src={selectedItem.src}
                         controls
                         autoPlay
+                        muted
+                        playsInline
                         className="cinema-video"
                       />
                     ) : (
