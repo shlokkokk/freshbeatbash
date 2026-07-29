@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Mic2, ChevronDown } from 'lucide-react'
+import { Mic2, ChevronDown, Calendar, Clock, MapPin } from 'lucide-react'
 import { MagneticButton } from './MagneticButton'
 
 const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
@@ -313,17 +313,28 @@ export function Hero() {
           ))}
         </h1>
 
-        {/* Badges */}
+        {/* Holographic Cyber Event Pass Pill */}
         <motion.div
-          className="hero-badges"
+          className="hero-event-pass"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: .6, delay: 0.75, ease: [0.16,1,0.3,1] }}
         >
-          <span className="badge badge-fresh">Freshers</span>
-          <span className="badge-x">×</span>
-          <span className="badge badge-fare">Farewell</span>
-          <span className="badge-year">2026</span>
+          <div className="pass-pill-segment">
+            <span className="btn-pulse-dot" />
+            <Calendar size={13} className="pass-icon pass-icon-lime" />
+            <span className="pass-val">22 AUG 2026</span>
+          </div>
+          <span className="pass-dot-divider" />
+          <div className="pass-pill-segment">
+            <Clock size={13} className="pass-icon pass-icon-cyan" />
+            <span className="pass-val">5:00 PM ONWARDS</span>
+          </div>
+          <span className="pass-dot-divider" />
+          <div className="pass-pill-segment">
+            <MapPin size={13} className="pass-icon pass-icon-pink" />
+            <span className="pass-val pass-venue-highlight">VENUE ANNOUNCING SOON</span>
+          </div>
         </motion.div>
 
         {/* Tagline */}

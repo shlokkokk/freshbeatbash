@@ -746,21 +746,125 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   100% { background-position: 200%; }
 }
 
-.hero-badges {
-  display: flex;
+/* ─── Holographic Cyber Event Pass Pill (Hero) ─── */
+.hero-event-pass {
+  display: inline-flex;
   align-items: center;
   gap: 12px;
+  padding: 8px 22px;
+  background: rgba(10, 10, 24, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  margin-top: 8px;
+  max-width: 92vw;
   flex-wrap: wrap;
   justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.badge {
-  font-size: 11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
-  padding: 6px 16px; border-radius: 100px; border: 1px solid;
+
+.hero-event-pass:hover {
+  border-color: rgba(200, 255, 0, 0.4);
+  box-shadow: 0 0 35px rgba(200, 255, 0, 0.25), 0 12px 40px rgba(0, 0, 0, 0.7);
+  transform: translateY(-2px);
 }
-.badge-fresh { color:var(--lime); border-color:rgba(200,255,0,.28); background:rgba(200,255,0,.08); }
-.badge-fare  { color:var(--pink); border-color:rgba(255,0,102,.28); background:rgba(255,0,102,.08); }
-.badge-x    { color:var(--text-3); font-family:var(--font-d); font-size:22px; }
-.badge-year { font-family:var(--font-d); font-size:22px; color:var(--text-3); letter-spacing:.08em; }
+
+.pass-pill-segment {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pass-icon {
+  flex-shrink: 0;
+}
+.pass-icon-lime { color: var(--lime); }
+.pass-icon-cyan { color: var(--cyan); }
+.pass-icon-pink { color: var(--pink); }
+
+.pass-val {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.pass-venue-highlight {
+  color: var(--pink);
+  letter-spacing: 0.1em;
+}
+
+.pass-dot-divider {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+/* ─── Persistent Header Status HUD Chip (Nav) ─── */
+.nav-hud-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-2);
+  margin-left: 14px;
+  transition: all 0.3s ease;
+}
+
+.nav-hud-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(200, 255, 0, 0.35);
+  color: var(--text-1);
+}
+
+.hud-part {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.hud-part svg { color: var(--lime); }
+.hud-venue-text svg { color: var(--pink); }
+.hud-venue-text { color: var(--pink); }
+.hud-dot { color: rgba(255, 255, 255, 0.25); font-size: 10px; }
+
+@media (max-width: 900px) {
+  .nav-hud-chip {
+    display: none;
+  }
+  .hero-event-pass {
+    padding: 12px 18px;
+    gap: 8px;
+    border-radius: 18px;
+    flex-direction: column;
+    width: 90%;
+  }
+  .pass-val {
+    font-size: 12px;
+  }
+  .pass-dot-divider {
+    display: none;
+  }
+  .pass-pill-segment {
+    width: 100%;
+    justify-content: center;
+  }
+}
 
 .hero-tagline { font-size:clamp(14px,2vw,20px); color:var(--text-2); max-width:520px; line-height:1.55; }
 .hero-ctas    { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:6px; }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Mic2, Phone, X } from 'lucide-react'
+import { ArrowRight, Mic2, Phone, X, Calendar, Clock, MapPin } from 'lucide-react'
 import { InstagramIcon } from './Icons'
 
 const links = [
@@ -77,6 +77,15 @@ export function Nav() {
             <img src="/logo.png" alt="Fresh Beats Bash" className="nav-logo-img" width={34} height={34} />
             <span className="nav-logo-text">FRESH BEATS BASH</span>
           </a>
+
+          <div className="nav-hud-chip">
+            <span className="btn-pulse-dot" />
+            <span className="hud-part"><Calendar size={11} /> 22 AUG '26</span>
+            <span className="hud-dot">•</span>
+            <span className="hud-part"><Clock size={11} /> 5 PM</span>
+            <span className="hud-dot">•</span>
+            <span className="hud-part hud-venue-text"><MapPin size={11} /> VENUE SOON</span>
+          </div>
 
           <ul className="nav-links">
             {links.map(l => (
