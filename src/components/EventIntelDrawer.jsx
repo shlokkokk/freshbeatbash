@@ -145,10 +145,10 @@ export function EventIntelDrawer({ open, onClose }) {
             className="eid-panel"
             onClick={e => e.stopPropagation()}
             onTouchMove={e => e.stopPropagation()}
-            initial={{ x: '100%', skewY: -3 }}
-            animate={{ x: 0, skewY: 0 }}
-            exit={{ x: '105%', skewY: 2 }}
-            transition={{ type: 'spring', stiffness: 340, damping: 30 }}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', stiffness: 420, damping: 38 }}
           >
             {/* Ambient noise texture overlay */}
             <div className="eid-noise" aria-hidden="true" />

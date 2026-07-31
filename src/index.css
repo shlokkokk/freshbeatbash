@@ -1079,8 +1079,8 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   inset: 0;
   z-index: 10005;
   background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   justify-content: flex-end;
 }
@@ -1098,6 +1098,8 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Noise grain texture overlay */
