@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Disc3, Music, Users, Mic, Trophy, Camera, Utensils, Gamepad2, MoveHorizontal, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Disc3, Music, Users, Mic, Trophy, Camera, Utensils, Gamepad2, MoveHorizontal } from 'lucide-react'
 import { Reveal } from './Reveal'
 
 const CARDS = [

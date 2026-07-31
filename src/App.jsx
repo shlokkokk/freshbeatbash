@@ -46,7 +46,7 @@ export default function App() {
         <Marquee />
         <Story />
         <Highlights />
-        <Schedule />
+        <Schedule onOpenIntel={openIntel} />
         <Stage />
         <Gallery />
         <Crew />
@@ -54,7 +54,7 @@ export default function App() {
         <Social />
       </main>
 
-      <Footer />
+      <Footer onOpenIntel={openIntel} />
       <MobileDock />
 
       {/* Global Side Panel Event Intel Drawer */}

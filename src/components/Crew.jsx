@@ -4,10 +4,12 @@ import { PhoneCall, ArrowUpRight } from 'lucide-react'
 import { Reveal } from './Reveal'
 
 const CREW = [
-  { name: 'Manav Solanki',  phone: '+91 78747 12871', tel: '917874712871', initials: 'MS', accent: 'ca-lime'   },
-  { name: 'Shiv Ramavat',   phone: '+91 87587 66111', tel: '918758766111', initials: 'SR', accent: 'ca-cyan'   },
-  { name: 'Dhairya Manvar', phone: '+91 95102 02351', tel: '919510202351', initials: 'DM', accent: 'ca-pink'   },
-  { name: 'Roshan Udvadia', phone: '+91 63599 10536', tel: '916359910536', initials: 'RU', accent: 'ca-purple' },
+  { name: 'Roshan Udvadia',    phone: '+91 63599 10536', tel: '916359910536', initials: 'RU', accent: 'ca-purple' },
+  { name: 'Deex Udvadia',      phone: '+91 82382 18284', tel: '918238218284', initials: 'DU', accent: 'ca-amber'  },
+  { name: 'Shiv Ramavat',      phone: '+91 87587 66111', tel: '918758766111', initials: 'SR', accent: 'ca-cyan'   },
+  { name: 'Khushal Prajapati', phone: '+91 81412 88107', tel: '918141288107', initials: 'KP', accent: 'ca-lime'   },
+  { name: 'Manav Solanki',     phone: '+91 78747 12871', tel: '917874712871', initials: 'MS', accent: 'ca-pink'   },
+  { name: 'Dhairya Manvar',    phone: '+91 95102 02351', tel: '919510202351', initials: 'DM', accent: 'ca-purple' },
 ]
 
 function CrewCard({ member, delay }) {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Mic2, Phone, X, Calendar, Clock, MapPin, ChevronRight, Sparkles, Ticket } from 'lucide-react'
+import { ArrowRight, Mic2, X, Calendar, Clock, MapPin, ChevronRight, Sparkles, Ticket, Phone } from 'lucide-react'
 import { InstagramIcon } from './Icons'
 
 const links = [
@@ -85,9 +85,9 @@ export function Nav({ onOpenIntel }) {
           <div className="nav-hud-chip" onClick={onOpenIntel} role="button" tabIndex={0} style={{ cursor: 'pointer' }}>
             <span className="hud-part"><Calendar size={11} /> 22 AUG '26</span>
             <span className="hud-dot">•</span>
-            <span className="hud-part"><Clock size={11} /> 5 PM</span>
+            <span className="hud-part"><Clock size={11} /> 4 PM</span>
             <span className="hud-dot">•</span>
-            <span className="hud-part hud-venue-text"><MapPin size={11} /> VENUE SOON</span>
+            <span className="hud-part hud-venue-text"><MapPin size={11} /> CLOUD3DISCO</span>
           </div>
 
           <ul className="nav-links">
@@ -143,15 +143,15 @@ export function Nav({ onOpenIntel }) {
             <motion.div
               variants={itemVariants}
               className="mobile-intel-banner"
-              onClick={() => { close(); onOpenIntel(); }}
+              onClick={onOpenIntel}
             >
               <div className="banner-left">
                 <Sparkles size={13} className="text-lime" />
                 <span className="banner-date">22 AUG '26</span>
                 <span className="banner-sep">•</span>
-                <span className="banner-time">5 PM</span>
+                <span className="banner-time">4 PM</span>
                 <span className="banner-sep">•</span>
-                <span className="banner-venue">VENUE SOON</span>
+                <span className="banner-venue">CLOUD3DISCO</span>
               </div>
               <span className="banner-tag">PASS &amp; INFO ↗</span>
             </motion.div>
@@ -199,16 +199,23 @@ export function Nav({ onOpenIntel }) {
                 <a href="tel:+918758766111" className="mobile-contact-chip">
                   <Phone size={12} /> Shiv
                 </a>
-                <a href="https://www.instagram.com/freshbeatsbash" target="_blank" rel="noopener noreferrer" className="mobile-contact-chip">
+                <a
+                  href="https://www.instagram.com/freshbeatsbash"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mobile-contact-chip"
+                >
                   <InstagramIcon size={12} /> @freshbeatsbash
                 </a>
-                <a href="tel:+917874712871" className="mobile-contact-chip">
-                  <Phone size={12} /> Manav
+                <a href="tel:+916359910536" className="mobile-contact-chip">
+                  <Phone size={12} /> Roshan
                 </a>
               </motion.div>
 
               <motion.div className="mobile-menu-credit" variants={itemVariants}>
-                <span>Designed &amp; Built by <strong className="credit-author">Shlok Shah</strong></span>
+                <span>
+                  Designed &amp; Built by <strong className="credit-author">Shlok Shah</strong>
+                </span>
               </motion.div>
             </div>
           </motion.div>

@@ -7,7 +7,7 @@ const EVENTS = [
   { side:'left',  Icon:DoorOpen,   phase:'Early Evening', title:'Gates Open',         body:'Arrive, check in, grab your wristband, and soak in the atmosphere as the venue transforms from empty hall to electric arena.' },
   { side:'right', Icon:Sparkles,   phase:'Opening',       title:'Grand Welcome',      body:'An opening ceremony that sets the tone — welcoming freshers by name and honouring every graduating senior in the room.' },
   { side:'left',  Icon:Star,       phase:'Main Event',    title:'Performances Begin', body:'Singers, dancers, comedians, spoken word artists — the full depth of your batch\'s talent, finally given the stage it deserves.' },
-  { side:'right', Icon:Award,      phase:'The Honours',   title:'Awards & Tributes',  body:'Superlatives, heartfelt tributes, and recognition that\'ll have people calling their parents mid-ceremony to say "you should have come."' },
+  { side:'right', Icon:Award,      phase:'The Honours',   title:'Awards & Tributes',  body:'Superlatives, heartfelt tributes, and recognition that\'ll have people calling their friends mid-ceremony to say "you should have come."' },
   { side:'left',  Icon:Disc3,      phase:'The Peak',      title:'DJ Night Ignites',   body:'The lights drop. The bass kicks in. The entire crowd becomes one. This is the part you\'ll be talking about on graduation day four years from now.' },
   { side:'right', Icon:Moon,       phase:'The Finale',    title:'Midnight Memories',  body:'The last song. The last photo. The hug that says everything words can\'t. The night ends, but what you felt here never does.' },
 ]
@@ -36,7 +36,7 @@ function TimelineItem({ ev, idx }) {
   )
 }
 
-export function Schedule() {
+export function Schedule({ onOpenIntel }) {
   const spineRef = useRef(null)
   const spineInView = useInView(spineRef, { once: true })
 
@@ -47,6 +47,14 @@ export function Schedule() {
           <span className="section-eyebrow">THE NIGHT UNFOLDS</span>
           <h2 className="section-title">How It All <em>Runs.</em></h2>
           <p className="section-desc">Every moment planned, every detail crafted.</p>
+          <button
+            onClick={onOpenIntel}
+            className="schedule-intel-pill"
+            aria-label="View venue and event details"
+          >
+            <span className="schedule-intel-dot" />
+            CLOUD3DISCO · 22 AUG · 4 PM — <span className="schedule-intel-cta">Venue & Details ↗</span>
+          </button>
         </Reveal>
 
         <div className="timeline">

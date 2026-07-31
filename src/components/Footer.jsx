@@ -11,10 +11,12 @@ const NAV_LINKS = [
 ]
 
 const CONTACTS = [
-  { name:'Manav',   tel:'917874712871',  phone:'+91 78747 12871' },
-  { name:'Shiv',    tel:'918758766111',  phone:'+91 87587 66111' },
-  { name:'Dhairya', tel:'919510202351',  phone:'+91 95102 02351' },
   { name:'Roshan',  tel:'916359910536',  phone:'+91 63599 10536' },
+  { name:'Deex',    tel:'918238218284',  phone:'+91 82382 18284' },
+  { name:'Shiv',    tel:'918758766111',  phone:'+91 87587 66111' },
+  { name:'Khushal', tel:'918141288107',  phone:'+91 81412 88107' },
+  { name:'Manav',   tel:'917874712871',  phone:'+91 78747 12871' },
+  { name:'Dhairya', tel:'919510202351',  phone:'+91 95102 02351' },
 ]
 
 const COLORS = ['var(--lime)', 'var(--cyan)', 'var(--pink)']
@@ -48,7 +50,7 @@ function FooterViz() {
   )
 }
 
-export function Footer() {
+export function Footer({ onOpenIntel }) {
   return (
     <footer id="footer">
       <FooterViz />
@@ -59,6 +61,15 @@ export function Footer() {
             <p className="footer-name">FRESH BEATS BASH</p>
             <p className="footer-sub">Freshers × Farewell · 2026</p>
             <p className="footer-tagline-quote">"One Night. Two Worlds. Infinite Memories."</p>
+
+            {/* Venue block */}
+            <div className="footer-venue-block">
+              <p className="footer-venue-name">CLOUD3DISCO</p>
+              <p className="footer-venue-addr">3rd Floor, PVR · Ved Transcube Plaza, Vadodara</p>
+              <button onClick={onOpenIntel} className="footer-intel-btn" aria-label="Open event details">
+                Directions & Full Details ↗
+              </button>
+            </div>
           </div>
 
           <div className="footer-links">

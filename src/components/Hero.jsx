@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { Mic2, ChevronDown, Calendar, Clock, MapPin, Sparkles, X, ChevronRight, Ticket } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Mic2, ChevronDown, Calendar, ChevronRight } from 'lucide-react'
 import { MagneticButton } from './MagneticButton'
 
 const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
@@ -227,7 +226,7 @@ function useHeroCanvas(canvasRef) {
           }
         }
         ctx.restore()
-      } catch (err) {
+      } catch {
         // Prevent crash
       }
     }

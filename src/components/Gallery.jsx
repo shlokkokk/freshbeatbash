@@ -112,8 +112,12 @@ export function Gallery() {
     const handleKeyDown = (e) => {
       if (selectedItemIndex === null) return
       if (e.key === 'Escape') setSelectedItemIndex(null)
-      if (e.key === 'ArrowLeft') handlePrev(e)
-      if (e.key === 'ArrowRight') handleNext(e)
+      if (e.key === 'ArrowLeft') {
+        setSelectedItemIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : GALLERY_ITEMS.length - 1))
+      }
+      if (e.key === 'ArrowRight') {
+        setSelectedItemIndex((prev) => (prev !== null && prev < GALLERY_ITEMS.length - 1 ? prev + 1 : 0))
+      }
     }
 
     window.addEventListener('keydown', handleKeyDown)

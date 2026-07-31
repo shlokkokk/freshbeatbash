@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Ticket, Compass } from 'lucide-react'
+import { Ticket } from 'lucide-react'
 import { InstagramIcon } from './Icons'
 
 const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
