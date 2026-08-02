@@ -15,7 +15,7 @@ const CONTACTS = [
   { name:'Deex',    tel:'918238218284',  phone:'+91 82382 18284' },
   { name:'Shiv',    tel:'918758766111',  phone:'+91 87587 66111' },
   { name:'Khushal', tel:'918141288107',  phone:'+91 81412 88107' },
-  { name:'Manav',   tel:'917874712871',  phone:'+91 78747 12871' },
+  { name:'Rudraksha', tel:'917874088365',  phone:'+91 78740 88365' },
   { name:'Dhairya', tel:'919510202351',  phone:'+91 95102 02351' },
 ]
 

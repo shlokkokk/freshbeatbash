@@ -8,7 +8,7 @@ const CREW = [
   { name: 'Deex Udvadia',      phone: '+91 82382 18284', tel: '918238218284', initials: 'DU', accent: 'ca-amber'  },
   { name: 'Shiv Ramavat',      phone: '+91 87587 66111', tel: '918758766111', initials: 'SR', accent: 'ca-cyan'   },
   { name: 'Khushal Prajapati', phone: '+91 81412 88107', tel: '918141288107', initials: 'KP', accent: 'ca-lime'   },
-  { name: 'Manav Solanki',     phone: '+91 78747 12871', tel: '917874712871', initials: 'MS', accent: 'ca-pink'   },
+  { name: 'Parmar Rudraksha',  phone: '+91 78740 88365', tel: '917874088365', initials: 'PR', accent: 'ca-pink'   },
   { name: 'Dhairya Manvar',    phone: '+91 95102 02351', tel: '919510202351', initials: 'DM', accent: 'ca-purple' },
 ]
 
