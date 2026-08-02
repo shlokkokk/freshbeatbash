@@ -15,9 +15,9 @@ import { Reveal } from './Reveal'
 
 /* ─── 1. DIRECT HOTLINE DIRECTORY ─── */
 const DIRECT_CONTACTS = [
+  { name: 'Shiv Ramavat',      shortName: 'Shiv Ramavat',    phone: '+91 87587 66111', tel: '918758766111', role: 'Social Media Head' },
   { name: 'Roshan Udvadia',    shortName: 'Roshan',          phone: '+91 63599 10536', tel: '916359910536', role: 'Sponsor Seeker' },
   { name: 'Deex Udvadia',      shortName: 'Deex',            phone: '+91 82382 18284', tel: '918238218284', role: 'Public Relations' },
-  { name: 'Shiv Ramavat',      shortName: 'Shiv Ramavat',    phone: '+91 87587 66111', tel: '918758766111', role: 'Social Media Head' },
   { name: 'Khushal Prajapati', shortName: 'Khushal',         phone: '+91 81412 88107', tel: '918141288107', role: 'Public Relations' },
   { name: 'Parmar Rudraksha',  shortName: 'Rudraksha',       phone: '+91 78740 88365', tel: '917874088365', role: 'Finance Head' },
   { name: 'Dhairya Manvar',    shortName: 'Dhairya',         phone: '+91 95102 02351', tel: '919510202351', role: 'Management Head' },
