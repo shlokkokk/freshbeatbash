@@ -11,12 +11,12 @@ const NAV_LINKS = [
 ]
 
 const CONTACTS = [
-  { name:'Roshan',  tel:'916359910536',  phone:'+91 63599 10536' },
-  { name:'Deex',    tel:'918238218284',  phone:'+91 82382 18284' },
-  { name:'Shiv',    tel:'918758766111',  phone:'+91 87587 66111' },
-  { name:'Khushal', tel:'918141288107',  phone:'+91 81412 88107' },
-  { name:'Rudraksha', tel:'917874088365',  phone:'+91 78740 88365' },
-  { name:'Dhairya', tel:'919510202351',  phone:'+91 95102 02351' },
+  { name:'Shiv Ramavat', tel:'918758766111',  phone:'+91 87587 66111' },
+  { name:'Roshan',       tel:'916359910536',  phone:'+91 63599 10536' },
+  { name:'Deex',         tel:'918238218284',  phone:'+91 82382 18284' },
+  { name:'Khushal',      tel:'918141288107',  phone:'+91 81412 88107' },
+  { name:'Rudraksha',    tel:'917874088365',  phone:'+91 78740 88365' },
+  { name:'Dhairya',      tel:'919510202351',  phone:'+91 95102 02351' },
 ]
 
 const COLORS = ['var(--lime)', 'var(--cyan)', 'var(--pink)']

@@ -50,7 +50,16 @@ function ContactModal({ contact, onClose }) {
   const [copied, setCopied] = useState(false)
   if (!contact) return null
 
-  const initials = contact.name.slice(0, 2).toUpperCase()
+  const getInitials = (fullName) => {
+    if (!fullName) return 'FB'
+    const parts = fullName.trim().split(/\s+/)
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+    }
+    return fullName.slice(0, 2).toUpperCase()
+  }
+
+  const initials = getInitials(contact.name)
 
   const copyNumber = () => {
     navigator.clipboard.writeText(contact.phone)
@@ -62,19 +71,28 @@ function ContactModal({ contact, onClose }) {
     <div className="crew-modal-overlay" onClick={onClose}>
       <motion.div 
         className="crew-modal-card"
-        initial={{ opacity: 0, scale: 0.9, y: 15 }}
+        initial={{ opacity: 0, scale: 0.88, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 15 }}
-        transition={{ duration: 0.22 }}
+        exit={{ opacity: 0, scale: 0.88, y: 20 }}
+        transition={{ duration: 0.25, cubicBezier: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modal-close" onClick={onClose} aria-label="Close">
+        <div className="modal-glow-bg" />
+
+        <button className="modal-close" onClick={onClose} aria-label="Close modal">
           <X size={16} />
         </button>
 
-        <div className="modal-avatar">{initials}</div>
+        <div className="modal-avatar-wrapper">
+          <div className="modal-avatar-ring" />
+          <div className="modal-avatar">{initials}</div>
+        </div>
 
         <div className="modal-header-info">
+          <div className="modal-status-pill">
+            <span className="pulse-dot" />
+            <span>DIRECT HOTLINE</span>
+          </div>
           <span className="modal-badge">{contact.role}</span>
           <h3 className="modal-title">{contact.name}</h3>
         </div>
@@ -83,12 +101,12 @@ function ContactModal({ contact, onClose }) {
           <span className="modal-phone-text">{contact.phone}</span>
           <div className="modal-btns-row">
             <a href={`tel:+${contact.tel}`} className="modal-call-action">
-              <PhoneCall size={14} />
+              <PhoneCall size={15} />
               <span>Call Now</span>
             </a>
             <button onClick={copyNumber} className="modal-copy-action">
-              {copied ? <Check size={14} className="text-lime" /> : <Copy size={14} />}
-              <span>{copied ? 'Copied' : 'Copy'}</span>
+              {copied ? <Check size={15} className="text-lime" /> : <Copy size={15} />}
+              <span>{copied ? 'Copied!' : 'Copy'}</span>
             </button>
           </div>
         </div>

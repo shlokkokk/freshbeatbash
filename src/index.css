@@ -3283,14 +3283,14 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   }
 }
 
-/* ─── MODAL POPUP ─── */
+/* ─── MODAL POPUP (Ultra-Cyber Glassmorphic Contact Card) ─── */
 .crew-modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 100000;
   background: rgba(5, 5, 15, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3300,25 +3300,38 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .crew-modal-card {
   position: relative;
   width: 100%;
-  max-width: 380px;
-  background: rgba(22, 22, 44, 0.95);
-  border: 1px solid var(--lime);
-  border-radius: 24px;
-  padding: 28px 24px;
+  max-width: 390px;
+  background: rgba(18, 18, 38, 0.95);
+  border: 1px solid rgba(200, 255, 0, 0.35);
+  border-radius: 26px;
+  padding: 32px 26px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 16px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(200, 255, 0, 0.2);
+  gap: 18px;
+  overflow: hidden;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(200, 255, 0, 0.15);
+}
+
+.modal-glow-bg {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 255, 0, 0.18), transparent 70%);
+  pointer-events: none;
 }
 
 .modal-close {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 30px;
-  height: 30px;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -3327,104 +3340,170 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
 }
 .modal-close:hover {
   background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
+  transform: scale(1.08);
 }
 
-.modal-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: rgba(200, 255, 0, 0.15);
-  border: 2px solid var(--lime);
+.modal-avatar-wrapper {
+  position: relative;
+  width: 68px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-d);
+  z-index: 2;
+}
+
+.modal-avatar-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--lime), transparent 60%, var(--lime));
+  animation: cursor-border-spin 4s linear infinite;
+  opacity: 0.8;
+}
+
+.modal-avatar {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #0d0d1e;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-b);
   font-size: 22px;
+  font-weight: 700;
   color: var(--lime);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  padding-top: 1px;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
 }
 
 .modal-header-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
 }
 
-.modal-badge {
+.modal-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: rgba(200, 255, 0, 0.08);
+  border: 1px solid rgba(200, 255, 0, 0.2);
+  border-radius: 100px;
   font-family: var(--font-b);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--lime);
+}
+
+.modal-badge {
+  font-family: var(--font-b);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-top: 2px;
 }
 
 .modal-title {
   font-family: var(--font-b);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: #ffffff;
+  letter-spacing: -0.02em;
 }
 
 .modal-actions-box {
   width: 100%;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  padding: 18px 20px;
+  background: rgba(10, 10, 24, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
   align-items: center;
+  z-index: 2;
 }
 
 .modal-phone-text {
   font-family: var(--font-d);
-  font-size: 20px;
-  letter-spacing: 0.08em;
+  font-size: 22px;
+  letter-spacing: 0.1em;
   color: #ffffff;
 }
 
 .modal-btns-row {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
   width: 100%;
 }
 
 .modal-call-action {
-  flex: 1;
+  flex: 1.2;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px;
+  gap: 8px;
+  padding: 0 16px;
   background: var(--lime);
   border: none;
   border-radius: 100px;
   font-family: var(--font-b);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   color: #000000;
   text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(200, 255, 0, 0.35);
+  transition: all 0.25s ease;
+}
+.modal-call-action:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .modal-copy-action {
+  flex: 1;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 100px;
   font-family: var(--font-b);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #ffffff;
+  white-space: nowrap;
   cursor: pointer;
+  transition: all 0.25s ease;
+}
+.modal-copy-action:hover {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 /* Responsive Media Queries */
