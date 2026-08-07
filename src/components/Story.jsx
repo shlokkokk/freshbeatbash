@@ -76,9 +76,7 @@ export function Story() {
             A rare collision — the rush of a new beginning and the beauty of a farewell, sharing the same dancefloor, the same night, the same memory.
           </p>
         </Reveal>
-      </div>
-
-      <div className="story-split">
+        <div className="story-split">
         {/* Left Side: Freshers */}
         <StoryCard type="story-fresh" delay={0}>
           <div className="story-inner">
@@ -136,6 +134,7 @@ export function Story() {
           </div>
         </StoryCard>
       </div>
-    </section>
-  )
+    </div>
+  </section>
+)
 }
