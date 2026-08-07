@@ -1,5 +1,6 @@
-﻿import { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { Ticket } from "lucide-react"
 
 const PASS_WA_URL = "https://wa.me/918758766111?text=Hey!%20I%20want%20to%20get%20an%20Attendee%20Entry%20Pass%20for%20Fresh%20Beats%20Bash%202026."
 const EVENT_DATE  = new Date("2026-08-22T16:00:00+05:30")
@@ -47,7 +48,7 @@ export function PassStrip() {
             exit={{ opacity: 0, y: 8, scale: 0.94 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="vt-emoji">🎟</span>
+            <Ticket size={20} className="vt-icon" />
             <div className="vt-body">
               <span className="vt-label">ATTENDEE ENTRY</span>
               <span className="vt-cta">Get Your Pass</span>

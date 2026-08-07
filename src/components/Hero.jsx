@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Mic2, ChevronDown, Calendar, ChevronRight, Ticket } from 'lucide-react'
+import { Mic2, ChevronDown, Calendar, ChevronRight, Ticket, ArrowUpRight } from 'lucide-react'
 import { MagneticButton } from './MagneticButton'
 
 const REG_URL     = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
@@ -347,9 +347,9 @@ export function Hero({ onOpenIntel }) {
           Where new stories begin &amp; legends take their final bow
         </motion.p>
 
-        {/* CTAs */}
+        {/* CTAs — desktop */}
         <motion.div
-          className="hero-ctas"
+          className="hero-ctas hero-ctas-desktop"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: .6, delay: 1.0, ease: [0.16,1,0.3,1] }}
@@ -370,6 +370,79 @@ export function Hero({ onOpenIntel }) {
             Discover the Night <ChevronDown size={17} />
           </MagneticButton>
         </motion.div>
+
+        {/* CTAs — mobile: Split Ticket Card */}
+        <motion.div
+          className="hero-split-ticket"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: .6, delay: 1.0, ease: [0.16,1,0.3,1] }}
+          aria-label="Choose your role"
+        >
+          {/* Left half — Performer */}
+          <a
+            href={REG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hst-half hst-act"
+            aria-label="Register Your Act"
+          >
+            <span className="hst-shine" aria-hidden="true" />
+            <span className="hst-icon" aria-hidden="true">
+              <Mic2 size={18} />
+            </span>
+            <span className="hst-role">PERFORMER</span>
+            <span className="hst-action">
+              <span>REGISTER ACT</span>
+              <ArrowUpRight size={14} className="hst-arr" />
+            </span>
+          </a>
+
+          {/* Center perforation */}
+          <div className="hst-perf" aria-hidden="true">
+            <div className="hst-perf-notch top" />
+            <div className="hst-perf-line" />
+            <div className="hst-perf-notch bottom" />
+          </div>
+
+          {/* Right half — Attendee */}
+          <a
+            href={PASS_WA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hst-half hst-pass"
+            aria-label="Get Attendee Pass"
+          >
+            <span className="hst-shine" aria-hidden="true" />
+            <span className="hst-icon" aria-hidden="true">
+              <Ticket size={18} />
+            </span>
+            <span className="hst-role">ATTENDEE</span>
+            <span className="hst-action">
+              <span>GET PASS</span>
+              <ArrowUpRight size={14} className="hst-arr" />
+            </span>
+          </a>
+        </motion.div>
+
+        {/* Mobile Cyber Discover Radar Pill */}
+        <motion.a
+          href="#story"
+          className="hero-mobile-discover"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: .6, delay: 1.2 }}
+        >
+          <span className="hmd-eq-bars" aria-hidden="true">
+            <span className="hmd-bar hmd-bar-1" />
+            <span className="hmd-bar hmd-bar-2" />
+            <span className="hmd-bar hmd-bar-3" />
+          </span>
+          <span className="hmd-text">DISCOVER THE NIGHT</span>
+          <span className="hmd-icon-wrap" aria-hidden="true">
+            <ChevronDown size={14} />
+          </span>
+        </motion.a>
       </motion.div>
     </section>
   )
