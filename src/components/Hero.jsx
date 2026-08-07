@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Mic2, ChevronDown, Calendar, ChevronRight } from 'lucide-react'
+import { Mic2, ChevronDown, Calendar, ChevronRight, Ticket } from 'lucide-react'
 import { MagneticButton } from './MagneticButton'
 
-const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
+const REG_URL     = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
+const PASS_WA_URL = 'https://wa.me/918758766111?text=Hey!%20I%20want%20to%20get%20an%20Attendee%20Entry%20Pass%20for%20Fresh%20Beats%20Bash%202026.'
 
 // ── Cyber Liquid Waveform Horizon + Sleek Laser Beams + Interactive Constellation ──
 function useHeroCanvas(canvasRef) {
@@ -361,6 +362,9 @@ export function Hero({ onOpenIntel }) {
               <span className="eq-bar eq-4" />
             </span>
             <Mic2 size={17} /> Register Your Act
+          </MagneticButton>
+          <MagneticButton href={PASS_WA_URL} target="_blank" rel="noopener noreferrer" className="btn btn-pass" id="hero-pass-btn">
+            <Ticket size={17} /> Get Attendee Pass
           </MagneticButton>
           <MagneticButton href="#story" className="btn btn-ghost">
             Discover the Night <ChevronDown size={17} />

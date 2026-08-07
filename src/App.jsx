@@ -17,6 +17,7 @@ import { Social } from './components/Social'
 import { Footer } from './components/Footer'
 import { MobileDock } from './components/MobileDock'
 import { EventIntelDrawer } from './components/EventIntelDrawer'
+import { PassStrip } from './components/PassStrip'
 
 export default function App() {
   useLenis()
@@ -56,6 +57,7 @@ export default function App() {
 
       <Footer onOpenIntel={openIntel} />
       <MobileDock />
+      <PassStrip />
 
       {/* Global Side Panel Event Intel Drawer */}
       <EventIntelDrawer open={showEventIntel} onClose={closeIntel} />

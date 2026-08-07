@@ -394,6 +394,24 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   box-shadow: 0 0 25px rgba(0, 229, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+/* Attendee Pass Button — Purple holographic pill */
+.btn-pass {
+  background: rgba(124, 58, 237, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #c4b5fd;
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.25), inset 0 1px 0 rgba(167, 139, 250, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-pass:hover {
+  background: rgba(124, 58, 237, 0.28);
+  border-color: rgba(167, 139, 250, 0.75);
+  color: #ede9fe;
+  box-shadow: 0 0 35px rgba(124, 58, 237, 0.55), 0 0 60px rgba(124, 58, 237, 0.2);
+  transform: translateY(-2px) scale(1.02);
+}
+
 .btn-xl { padding: 18px 46px; font-size: 17px; }
 
 /* ─── Navigation ─── */
@@ -3895,9 +3913,132 @@ body.mobile-menu-open .mobile-cyber-dock {
     transform: skewX(-25deg);
     animation: shimmer-sweep 2.5s infinite;
   }
+  .dock-pass {
+    position: relative;
+    flex: 1;
+    background: rgba(124, 58, 237, 0.18);
+    color: #c4b5fd;
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    box-shadow: 0 0 14px rgba(124, 58, 237, 0.35);
+  }
+  .dock-pass:active {
+    transform: scale(0.95);
+    background: rgba(124, 58, 237, 0.32);
+  }
 }
 
-/* ─── Sponsors Section — Cyber Glass Showcase ─── */
+/* ─── Vinyl Record Pass (Desktop Only) ─── */
+.vinyl-wrap { display: none; }
+
+@media (min-width: 769px) {
+  .vinyl-wrap {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 9000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Tooltip card above the record */
+  .vinyl-tooltip {
+    position: absolute;
+    bottom: calc(100% + 14px);
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: rgba(6, 6, 18, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(200, 255, 0, 0.3);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text-1);
+    white-space: nowrap;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.7), 0 0 24px rgba(200,255,0,0.12);
+    cursor: pointer;
+  }
+  .vt-emoji {
+    font-size: 22px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .vt-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .vt-label {
+    font-family: var(--font-b);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--text-3);
+    text-transform: uppercase;
+  }
+  .vt-cta {
+    font-family: var(--font-d);
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    color: var(--lime);
+    text-shadow: 0 0 14px rgba(200,255,0,0.6);
+  }
+  .vt-cd {
+    font-family: var(--font-b);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+  }
+
+  /* The vinyl disc link */
+  .vinyl-disc-link {
+    display: block;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    position: relative;
+    text-decoration: none;
+  }
+
+  /* Spinning SVG */
+  .vinyl-svg {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    animation: vinyl-spin 4s linear infinite;
+    filter: drop-shadow(0 0 18px rgba(200,255,0,0.18)) drop-shadow(0 8px 24px rgba(0,0,0,0.7));
+    transition: filter 0.3s ease;
+    display: block;
+  }
+  .vinyl-svg.vinyl-paused {
+    animation-play-state: paused;
+    filter: drop-shadow(0 0 28px rgba(200,255,0,0.4)) drop-shadow(0 8px 24px rgba(0,0,0,0.7));
+  }
+  @keyframes vinyl-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Outer glow ring — pulses independently */
+  .vinyl-glow-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(200,255,0,0.25);
+    animation: vinyl-ring-pulse 2.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes vinyl-ring-pulse {
+    0%, 100% { transform: scale(1);    opacity: 0.5; border-color: rgba(200,255,0,0.25); }
+    50%       { transform: scale(1.06); opacity: 1;   border-color: rgba(200,255,0,0.55); }
+  }
+}
+
 .sponsors-section {
   position: relative;
   padding: var(--sec-pad) 0;
