@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Mic2, X, Calendar, Clock, MapPin, ChevronRight, Sparkles, Ticket, Phone } from 'lucide-react'
+import { ArrowRight, Mic2, X, Calendar, CalendarPlus, Clock, MapPin, ChevronRight, Sparkles, Ticket, Phone } from 'lucide-react'
 import { InstagramIcon } from './Icons'
 
 const links = [
@@ -213,9 +213,16 @@ export function Nav({ onOpenIntel }) {
               </motion.div>
 
               <motion.div className="mobile-menu-credit" variants={itemVariants}>
-                <span>
-                  Designed &amp; Built by <strong className="credit-author">Shlok Shah</strong>
-                </span>
+                <a
+                  href="https://wa.me/919512345504"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+                >
+                  <span>
+                    Designed &amp; Built by <strong className="credit-author">Shlok Shah</strong>
+                  </span>
+                </a>
               </motion.div>
             </div>
           </motion.div>

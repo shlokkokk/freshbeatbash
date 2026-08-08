@@ -95,10 +95,16 @@ export function Footer({ onOpenIntel }) {
 
         <div className="footer-bottom">
           <p className="footer-copy">&copy; 2026 Fresh Beats Bash. All rights reserved.</p>
-          <div className="footer-credit-pill">
+          <a
+            href="https://wa.me/919512345504"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-credit-pill"
+            style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+          >
             <span>Designed &amp; Built by</span>
             <span className="credit-name">Shlok Shah</span>
-          </div>
+          </a>
         </div>
       </div>
     </footer>

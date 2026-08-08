@@ -2040,16 +2040,25 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 
 /* Save the Date Row — bottom-aligned in Event Intel drawer */
 .eid-cal-row {
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 11px 16px;
+  padding: 12px 16px;
   margin: auto 0 0;
-  background: rgba(255, 149, 0, 0.05);
-  border: 1px solid rgba(255, 149, 0, 0.18);
-  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.08) 0%, rgba(200, 255, 0, 0.05) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 14px;
   flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.18), inset 0 0 12px rgba(0, 229, 255, 0.06);
+  transition: all 0.25s ease;
+}
+
+.eid-cal-row:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 28px rgba(0, 229, 255, 0.32), inset 0 0 16px rgba(0, 229, 255, 0.12);
 }
 
 @media (max-width: 500px) {
@@ -2059,20 +2068,23 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .eid-cal-row-left {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
 .eid-cal-row-icon {
-  color: #ff9500;
+  color: var(--cyan);
   flex-shrink: 0;
+  filter: drop-shadow(0 0 6px var(--cyan));
 }
 
 .eid-cal-row-label {
   font-family: var(--font-d);
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 800;
   letter-spacing: 0.14em;
-  color: rgba(255, 149, 0, 0.7);
+  color: var(--cyan);
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.45);
 }
 
 .eid-cal-row-btns {
@@ -2083,29 +2095,32 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 }
 
 .eid-cal-pill {
-  padding: 5px 11px;
+  padding: 6px 13px;
   border-radius: 100px;
-  background: rgba(255, 149, 0, 0.08);
-  border: 1px solid rgba(255, 149, 0, 0.25);
-  color: #ffb340;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: #ffffff;
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 800;
   letter-spacing: 0.04em;
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
 }
 
 .eid-cal-pill:hover {
-  background: rgba(255, 149, 0, 0.18);
-  border-color: rgba(255, 149, 0, 0.5);
-  color: #ff9500;
-  transform: translateY(-1px);
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #000000;
+  font-weight: 800;
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.7);
+  transform: translateY(-1px) scale(1.04);
 }
 
 .eid-cal-pill:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
 /* Barcode strip */
