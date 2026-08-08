@@ -1,13 +1,197 @@
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion'
-import { Sparkles, X, Navigation, Copy, Check } from 'lucide-react'
+import { Sparkles, X, Navigation, Copy, Check, CalendarPlus, Calendar, Globe, Download, Ticket, Mic2 } from 'lucide-react'
 
 const REG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfBXAG7O4bLi1jpkrnA58_n6wIicrXJYnefLV0K75dHK7-jxQ/viewform'
 const PASS_WA_URL = 'https://wa.me/918758766111?text=Hey!%20I%20want%20to%20get%20an%20Attendee%20Entry%20Pass%20for%20Fresh%20Beats%20Bash%202026.'
 const MAPS_URL = 'https://maps.app.goo.gl/6B3TjDQ9ZnuFAiX57'
 const FULL_ADDRESS = 'Cloud3Disco, 3rd Floor, PVR, Ved Transcube Plaza, Vadodara'
 const EVENT_DATE = new Date('2026-08-22T16:00:00+05:30')
+
+const SITE_URL = 'https://www.freshbeatsbash.in/'
+const CAL_TITLE = 'Fresh Beats Bash 2026'
+const CAL_DETAILS = `FRESH BEATS BASH 2026 // The Official College Fresher & Farewell Party
+
+------------------
+
+[ VENUE ]
+Cloud3Disco (3rd Floor, PVR, Ved Transcube Plaza, Vadodara)
+
+------------------
+
+[ TIME ]
+Saturday 22 Aug 2026 -- Doors Open 4:00 PM Onwards
+
+------------------
+
+[ EXPERIENCE ]
+Welcoming Freshers & Bidding Farewell! EDM Drops, Live Bands, DJ Sets & Unforgettable Memories!
+
+------------------
+
+[ OFFICIAL PASSES & DETAILS ]
+${SITE_URL}`
+
+const CAL_LOCATION = 'Cloud3Disco, 3rd Floor, PVR, Ved Transcube Plaza, Vadodara'
+
+// Starts Aug 21, 2026 4:00 PM IST (10:30 UTC) and runs to Aug 22, 2026 4:00 PM IST (10:30 UTC - doors open!)
+const CAL_GOOGLE = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(CAL_TITLE)}&dates=20260821T103000Z/20260822T103000Z&details=${encodeURIComponent(CAL_DETAILS)}&location=${encodeURIComponent(CAL_LOCATION)}`
+
+const ICS_DATA = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Fresh Beats Bash//FBB2026//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:fbb2026-event@freshbeatsbash
+DTSTAMP:20260101T000000Z
+DTSTART:20260821T103000Z
+DTEND:20260822T103000Z
+SUMMARY:Fresh Beats Bash 2026
+DESCRIPTION:FRESH BEATS BASH 2026 // The Official College Fresher & Farewell Party\\n\\n------------------\\n\\n[ VENUE ]\\nCloud3Disco (3rd Floor, PVR, Ved Transcube Plaza, Vadodara)\\n\\n------------------\\n\\n[ TIME ]\\nSaturday 22 Aug 2026 -- Doors Open 4:00 PM Onwards\\n\\n------------------\\n\\n[ EXPERIENCE ]\\nWelcoming Freshers & Bidding Farewell! EDM Drops, Live Bands, DJ Sets & Unforgettable Memories!\\n\\n------------------\\n\\n[ OFFICIAL PASSES & DETAILS ]\\n${SITE_URL}
+LOCATION:Cloud3Disco, 3rd Floor, PVR, Ved Transcube Plaza, Vadodara
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow is Fresh Beats Bash 2026!
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT3H
+ACTION:DISPLAY
+DESCRIPTION:Fresh Beats Bash 2026 starts at 4:00 PM today at Cloud3Disco!
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Doors open in 1 hour for Fresh Beats Bash 2026!
+END:VALARM
+END:VEVENT
+END:VCALENDAR`
+
+function openAppleCalendar() {
+  const isIOS = typeof navigator !== 'undefined' && /iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent)
+  if (isIOS) {
+    // Triggers native iOS Calendar prompt directly without downloading a file or showing security warnings
+    const encoded = encodeURIComponent(ICS_DATA)
+    window.location.href = `data:text/calendar;charset=utf8,${encoded}`
+  } else {
+    downloadICS()
+  }
+}
+
+function downloadICS() {
+  const encoded = encodeURIComponent(ICS_DATA)
+  const a = document.createElement('a')
+  a.href = `data:text/calendar;charset=utf8,${encoded}`
+  a.download = 'fresh-beats-bash-2026.ics'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+}
+
+// Calendar Action Sheet Modal (Mobile & PC)
+function CalModal({ open, onClose }) {
+  if (typeof document === 'undefined') return null
+  return createPortal(
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="cal-modal-backdrop"
+          onClick={onClose}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.18 }}
+        >
+          <motion.div
+            className="cal-modal-sheet"
+            onClick={e => e.stopPropagation()}
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ type: 'spring', stiffness: 420, damping: 35 }}
+          >
+            <div className="cal-modal-handle" />
+            <div className="cal-modal-header">
+              <div className="cal-modal-title">
+                <CalendarPlus size={15} className="text-lime" />
+                <span>SAVE TO CALENDAR</span>
+              </div>
+              <button className="cal-modal-close" onClick={onClose} aria-label="Close">
+                <X size={14} />
+              </button>
+            </div>
+
+            <div className="cal-modal-list">
+              <button
+                type="button"
+                className="cal-modal-item"
+                onClick={() => { window.open(CAL_GOOGLE, '_blank'); onClose() }}
+              >
+                <Calendar size={20} className="text-lime flex-shrink-0" />
+                <div className="cal-modal-text">
+                  <span className="cal-modal-name">Google Calendar</span>
+                  <span className="cal-modal-sub">Opens directly in Google Calendar app or browser</span>
+                </div>
+                <span className="cal-modal-arr">↗</span>
+              </button>
+
+              <button
+                type="button"
+                className="cal-modal-item"
+                onClick={() => { openAppleCalendar(); onClose() }}
+              >
+                <Globe size={20} className="text-cyan flex-shrink-0" />
+                <div className="cal-modal-text">
+                  <span className="cal-modal-name">Apple Calendar</span>
+                  <span className="cal-modal-sub">Imports event into iPhone or Mac Calendar app</span>
+                </div>
+                <span className="cal-modal-arr">↗</span>
+              </button>
+
+              <button
+                type="button"
+                className="cal-modal-item"
+                onClick={() => { downloadICS(); onClose() }}
+              >
+                <Download size={20} className="text-purple flex-shrink-0" />
+                <div className="cal-modal-text">
+                  <span className="cal-modal-name">Download .ics File</span>
+                  <span className="cal-modal-sub">Universal format for Outlook & all calendar apps</span>
+                </div>
+                <span className="cal-modal-arr">↗</span>
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body
+  )
+}
+
+// Desktop-only Save the Date row inside the drawer
+function CalSaveRow() {
+  return (
+    <div className="eid-cal-row">
+      <div className="eid-cal-row-left">
+        <CalendarPlus size={13} className="eid-cal-row-icon" />
+        <span className="eid-cal-row-label">SAVE THE DATE</span>
+      </div>
+      <div className="eid-cal-row-btns">
+        <button className="eid-cal-pill" onClick={() => window.open(CAL_GOOGLE, '_blank')}>
+          Google
+        </button>
+        <button className="eid-cal-pill" onClick={openAppleCalendar}>
+          Apple
+        </button>
+        <button className="eid-cal-pill" onClick={downloadICS}>
+          .ics
+        </button>
+      </div>
+    </div>
+  )
+}
 
 // Cassette reel component — pure CSS animation, no images
 function CassetteReel({ color = '#c8ff00', size = 28 }) {
@@ -54,6 +238,7 @@ function FlipUnit({ value, label }) {
 
 export function EventIntelDrawer({ open, onClose }) {
   const [copied, setCopied] = useState(false)
+  const [calModalOpen, setCalModalOpen] = useState(false)
   const ct = useCountdown()
   const cardRef = useRef(null)
   const mouseX = useMotionValue(0)
@@ -130,7 +315,8 @@ export function EventIntelDrawer({ open, onClose }) {
   if (typeof document === 'undefined') return null
 
   return createPortal(
-    <AnimatePresence>
+    <>
+      <AnimatePresence>
       {open && (
         <motion.div
           className="eid-backdrop"
@@ -159,9 +345,21 @@ export function EventIntelDrawer({ open, onClose }) {
                 <Sparkles size={13} className="text-lime" />
                 <span className="eid-header-text">EVENT INTEL</span>
               </div>
-              <button className="eid-close" onClick={onClose} aria-label="Close">
-                <X size={14} />
-              </button>
+              <div className="eid-header-actions">
+                <button
+                  type="button"
+                  className="eid-header-cal-tag"
+                  onClick={() => setCalModalOpen(true)}
+                  aria-label="Save to Calendar"
+                >
+                  <span className="cal-tag-shimmer" aria-hidden="true" />
+                  <span className="cal-tag-text">ADD TO</span>
+                  <CalendarPlus size={13} className="cal-tag-icon" />
+                </button>
+                <button className="eid-close" onClick={onClose} aria-label="Close">
+                  <X size={14} />
+                </button>
+              </div>
             </div>
 
             {/* ─── TICKET STUB TOP SECTION ─── */}
@@ -254,7 +452,7 @@ export function EventIntelDrawer({ open, onClose }) {
                   className="eid-action-btn eid-action-pass"
                   onClick={onClose}
                 >
-                  <span className="eid-action-icon">🎟</span>
+                  <Ticket size={20} className="eid-action-icon text-purple" />
                   <div className="eid-action-text">
                     <span className="eid-action-sub">ATTENDEE ENTRY</span>
                     <span className="eid-action-main">Get Your Pass ↗</span>
@@ -268,13 +466,16 @@ export function EventIntelDrawer({ open, onClose }) {
                   className="eid-action-btn eid-action-act"
                   onClick={onClose}
                 >
-                  <span className="eid-action-icon">🎙</span>
+                  <Mic2 size={20} className="eid-action-icon text-lime" />
                   <div className="eid-action-text">
                     <span className="eid-action-sub">PERFORM LIVE</span>
                     <span className="eid-action-main">Register Your Act ↗</span>
                   </div>
                 </a>
               </div>
+
+              {/* Save the Date row — desktop panel only */}
+              <CalSaveRow />
 
               {/* Barcode strip */}
               <div className="eid-barcode" aria-hidden="true">
@@ -299,7 +500,9 @@ export function EventIntelDrawer({ open, onClose }) {
           </motion.aside>
         </motion.div>
       )}
-    </AnimatePresence>,
+    </AnimatePresence>
+    <CalModal open={calModalOpen} onClose={() => setCalModalOpen(false)} />
+    </>,
     document.body
   )
 }

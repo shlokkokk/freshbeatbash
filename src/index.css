@@ -1292,7 +1292,10 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   flex-shrink: 0;
 }
 
+
+
 /* ─── Persistent Header Status HUD Chip (Nav) ─── */
+
 .nav-hud-chip {
   display: flex;
   align-items: center;
@@ -1420,6 +1423,12 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   background-clip: text;
 }
 
+.eid-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .eid-close {
   width: 30px;
   height: 30px;
@@ -1437,6 +1446,203 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   background: rgba(255, 255, 255, 0.18);
   color: #fff;
   transform: scale(0.92);
+}
+
+/* Unique Cyber Tag — Header Add to Calendar (Mobile Only) */
+.eid-header-cal-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: rgba(255, 140, 0, 0.12);
+  border: 1px solid rgba(255, 170, 0, 0.4);
+  border-radius: 100px;
+  color: #ffaa00;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 0 14px rgba(255, 140, 0, 0.18);
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 501px) {
+  .eid-header-cal-tag { display: none; }
+}
+
+.cal-tag-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 220, 150, 0.3), transparent);
+  transform: skewX(-20deg);
+  animation: tag-shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes tag-shimmer {
+  0%   { left: -100%; }
+  35%  { left: 200%; }
+  100% { left: 200%; }
+}
+
+.cal-tag-text {
+  color: #ffc247;
+  white-space: nowrap;
+}
+
+.cal-tag-icon {
+  color: #ffaa00;
+  flex-shrink: 0;
+}
+
+.eid-header-cal-tag:hover,
+.eid-header-cal-tag:active {
+  background: rgba(255, 140, 0, 0.22);
+  border-color: #ffaa00;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 170, 0, 0.4);
+  transform: scale(0.96);
+}
+
+/* ─── CalModal — Native Action Sheet ─── */
+.cal-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+
+.cal-modal-sheet {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(16, 16, 28, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: none;
+  border-radius: 24px 24px 0 0;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  padding: 14px 18px calc(24px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.7);
+}
+
+.cal-modal-handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 auto 16px;
+}
+
+.cal-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 14px;
+}
+
+.cal-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-d);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--text-1);
+}
+
+.cal-modal-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.cal-modal-close:active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  transform: scale(0.92);
+}
+
+.cal-modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cal-modal-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-1);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.cal-modal-item:active {
+  background: rgba(200, 255, 0, 0.1);
+  border-color: rgba(200, 255, 0, 0.3);
+  transform: scale(0.98);
+}
+
+.cal-modal-emoji {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+}
+
+.cal-modal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.cal-modal-name {
+  font-family: var(--font-b);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.cal-modal-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.cal-modal-arr {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
 }
 
 /* ─────────────────────────────
@@ -1831,6 +2037,77 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   letter-spacing: 0.02em;
 }
 
+
+/* Save the Date Row — bottom-aligned in Event Intel drawer */
+.eid-cal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 16px;
+  margin: auto 0 0;
+  background: rgba(255, 149, 0, 0.05);
+  border: 1px solid rgba(255, 149, 0, 0.18);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 500px) {
+  .eid-cal-row { display: none; }
+}
+
+.eid-cal-row-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.eid-cal-row-icon {
+  color: #ff9500;
+  flex-shrink: 0;
+}
+
+.eid-cal-row-label {
+  font-family: var(--font-d);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 149, 0, 0.7);
+}
+
+.eid-cal-row-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.eid-cal-pill {
+  padding: 5px 11px;
+  border-radius: 100px;
+  background: rgba(255, 149, 0, 0.08);
+  border: 1px solid rgba(255, 149, 0, 0.25);
+  color: #ffb340;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.eid-cal-pill:hover {
+  background: rgba(255, 149, 0, 0.18);
+  border-color: rgba(255, 149, 0, 0.5);
+  color: #ff9500;
+  transform: translateY(-1px);
+}
+
+.eid-cal-pill:active {
+  transform: scale(0.95);
+}
+
 /* Barcode strip */
 .eid-barcode {
   display: flex;
@@ -1840,9 +2117,13 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   height: 38px;
   padding: 10px 8px 0;
   border-top: 1px solid rgba(255,255,255,0.07);
-  margin-top: auto;
+  margin-top: 12px;
   position: relative;
   flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .eid-barcode { margin-top: auto; }
 }
 
 .eid-bar {
